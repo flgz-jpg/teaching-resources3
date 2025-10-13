@@ -4,11 +4,13 @@ project:
 
 website:
   title: "Resources for Students"
-  navbar:
-    left:
+  
+  sidebar:
+    contents: 
       - href: index.qmd
         text: Home
       - mediationsanalyse.qmd
+    
         
 
 format:
