@@ -158,8 +158,15 @@ Im Folgenden Beispiel wollen wir untersuchen, ob ein geringer Selbstwert auf Sei
 
 # Daten einlesen
 
-parenting_data = read.csv2("parenting_data.csv", sep = ";") 
+data = read.csv2("data.csv", sep = ";")
 # alternativ: df <- read.csv2() 
+
+# wir skalieren die Prädiktoren mit sclae(), um sie vergleichbar zu machen
+# as.numeric stellt sicher, dass die Variablen-Werte numerisch sind
+# mit str() lässts ich im Vorfeld überprüfen, wie die Variablen-Werte gespeichert sind
+
+data$emotionality_z <- as.numeric(scale(as.numeric(data$emotionality)))
+data$hostility_z <- as.numeric(scale(as.numeric(data$hostility)))
 
 
 ```
@@ -171,18 +178,18 @@ parenting_data = read.csv2("parenting_data.csv", sep = ";")
 
 #  Step 1: Gibt es einen direkten Hauptweffekt x -> y? (path c)
 
-path_c =lm(strafen ~ negative_affect_z, data = parenting_data)
+path_c =lm(punishment ~ emotionality_z, data = data)
 #summ(path_c)$coef
 
 #  Step 2: Gibt es einen signifikanten Zusammenhang zwischen X und M? (path a)
 
-path_a =lm(selbstwert_z ~ negative_affect_z, data = parenting_data)
+path_a =lm(hostility_z ~ emotionality_z, data = data)
 #summ(path_a)$coef
 
 #  Step 3: Gibt es gleichzeitig einen Zusammenhang zwischen X und Y, wenn man für X kontrolliert? (path b)
 #  Step 4: Verschwindet / verringert sich der Effekt zwischen X und Y, wenn man für M kontrolliert? (path c')
 
-path_b_cprime =lm(strafen  ~ selbstwert_z + negative_affect_z, data = parenting_data)
+path_b_cprime =lm(punishment  ~ hostility_z + emotionality_z, data = data)
 #summ(path_b_cprime)$coef
 
 # Visualize Summary
@@ -203,24 +210,22 @@ Die Herangehensweise nach Barron und Kenny liefert Evidenz für oder gegen einen
 # -------------------------------------------------------------------------------------
 
 
-parenting_data$negative_affect_z <- as.numeric(scale(parenting_data$negative_affect))
-parenting_data$selbstwert_z <- as.numeric(scale(parenting_data$selbstwert))
 
-parenting_data <- parenting_data %>%
-  dplyr::select(negative_affect_z, selbstwert_z, strafen) %>%
+
+data2 <- data %>%
+  dplyr::select(emotionality_z, hostility_z, punishment) %>%
   na.omit()
 
-med_model <- lm(selbstwert_z ~ negative_affect_z, data = parenting_data)
-out_model <- lm(strafen ~ selbstwert_z + negative_affect_z, data = parenting_data)
+med_model <- lm(hostility_z ~ emotionality_z, data = data2)
+out_model <- lm(punishment ~ hostility_z + emotionality_z, data = data2)
 
 
 mediate_test <- mediate(med_model, out_model,
-                        treat = "negative_affect_z",
-                        mediator = "selbstwert_z",
+                        treat = "emotionality_z",
+                        mediator = "hostility_z",
                         boot = TRUE, sims = 5000)
 
 summary(mediate_test)
-
 
     # Interpretation
 
