@@ -1,0 +1,232 @@
+---
+title: "Mediationsanalyse"
+---
+
+# Einführung: Mediationsanalyse
+
+```{r message=FALSE}
+library(flextable)
+library(jtools)
+library(dplyr)
+library(mediation)
+```
+
+## Beispiel
+
+In den Daten einer Studie zu den negativen Effekten von Internet-Konsum auf die Studienleistung zeigt sich, dass Personen, die im offenen Antwortformat angegeben haben, sich regelmässig süsse Katzenvideos auf TikTok anzusehen, entgegen allen Erwartungen bessere Noten schreiben. 
+
+
+
+```{mermaid}
+graph LR
+    A[Süsse Katzenvideos] -- Signifikanter Effekt --> B[Produktivität]
+```
+
+
+**Handelt es sich hierbei um einen plausiblen Zusammenhang? Welche Alternativen wären denkbar?**
+
+Aus der Literatur weiss die Masterandin in dem Projekt, dass eine gute Stimmung sich positiv auf das Lernen auswirkt. Daraus schliesst sie, dass der Effekt zwischen süssen Katzenvideos und besserer Studienleistung über die gute Stimmung vermittelt wird. 
+
+Sie nimmt also an, dass es sich um einen **Mediationseffekt** handelt. Der **indirekte Effekt** der Unabhängigen Variable (UV; süsse Katzenvideos) auf die Abhängige Variable (AV; besser Studienleistung) wird über einen **Mediator (M; gute Stimmung)** vermittelt.  
+
+::: {.callout-warning title="Definition Mediationseffekt"}
+
+Ein Mediationseffekt ist ein
+
+- Indirekter Effekt
+- Der Effekt der UV auf die AV wird durch einen Mediator M vermittelt
+- Es handelt sich um eine kausale Kette / einen Mechanismus
+
+:::
+
+## Wie lässt sich das überprüfen?
+
+Es gibt unterschiedliche Methoden, um Mediationseffekte zu prüfen. In diesem Beispiel werden wir die klassische Methode von Barron und Kenney (1986) verwenden. Es handelt sich dabei um eine nicht unumstrittene, aber gut etablierte Methode. 
+
+### Barron und Kenny (1986)
+
+Diese Methode umfasst 4 Schritte:
+
+- Schätzung der Beziehung zwischen X und Y
+→ Der Effekt c muss signifikant von 0 verschieden sein.
+
+- Schätzung der Beziehung zwischen X und M
+→ Der Effekt a muss signifikant von 0 verschieden sein.
+
+- Schätzung der Beziehung zwischen M und Y unter Kontrolle von X
+→ Der Effekt b muss signifikant von 0 verschieden sein.
+
+- Schätzung der Beziehung zwischen X und Y unter Kontrolle von M
+→ Der Effekt c′ sollte nicht signifikant sein und nahe bei 0 liegen.
+
+```{mermaid}
+graph LR
+    A[Süsse Katzenvideos] -- Kein / Kleiner Effekt --> B[Produktivität]
+    A -- Signifikanter Effekt --> C[Gute Stimmung]
+    C -- Signifikanter Effekt --> B[Produktivität]
+```
+
+**"Full Mediation"**: Wenn für M kontrolliert wird, gibt es keinen Zusammenhang mehr / ist der Zusammenhang nicht mehr signifikant
+
+**"Partial Mediation"**: Wenn für M kontrolliert wird, wird der Zusammenhang kleiner
+
+::: {.callout-warning title="Methode von Barron und Kenny (1986)"}
+
+1. Prüfung eines signifikanten **direkten Zusammenhangs** zwischen UV und AV
+2. Prüfung eines signifikanten Zusammenhangs zwischen UV und M
+3. Prüfung eines signifikanten Zusammenhangs zwischen M und AV unter Kontrolle der UV
+4. Wenn für M kontrolliert wird, wird der Zusammehang zwischen UV und AV **kleiner / nicht mehr signifikant**
+
+:::
+
+
+## In R
+
+##### Daten Einlesen
+
+```{r}
+#| code-fold: true
+
+set.seed(123)
+
+n <- 100
+
+# Unabhängige Variable (X): Cat Videos
+cat_videos <- rnorm(n, mean = 5, sd = 2)
+
+# Mediator (M): Happiness (beeinflusst durch Cat Videos)
+happiness <- 0.5 * cat_videos + rnorm(n)
+
+# Abhängige Variable (Y): Productivity (beeinflusst durch Cat Videos und Happiness)
+productivity <- 0.3 * cat_videos + 0.6 * happiness + rnorm(n)
+
+data <- data.frame(cat_videos, happiness, productivity)
+head(data)
+
+```
+
+
+::: {.callout-note collapse="true" title="1.Schätzung der Beziehung zwischen X und Y→ Der Effekt c muss signifikant von 0 verschieden sein."}
+```{r}
+# Schritt 1: X → Y (Total Effect c)
+
+model_c <- lm(productivity ~ cat_videos, data = data)
+summ(model_c)$coef
+```
+:::
+
+::: {.callout-note collapse="true" title="2.Schätzung der Beziehung zwischen X und M→ Der Effekt a muss signifikant von 0 verschieden sein."}
+```{r}
+# Schritt 2: X → M (Path a)
+model_a <- lm(happiness ~ cat_videos, data = data)
+summ(model_a)$coef
+```
+:::
+
+
+::: {.callout-note collapse="true" title="3.&4.Schätzung der Beziehung zwischen M und Y unter Kontrolle von X→ Der Effekt b muss signifikant von 0 verschieden sein / Der Effekt c' wird kleiner / nicht mehr signifikant."}
+```{r}
+# Schritt 3: M → Y (kontrolliert für X) (Path b)
+# und X → Y (kontrolliert für M) (Direct Effect c')
+model_b_cprime <- lm(productivity ~ cat_videos + happiness, data = data)
+summ(model_b_cprime)$coef
+```
+:::
+
+
+
+-   Totaler Effekt von X auf Y: c = c’ + ab
+
+-   Indirekter Effekt von X auf Y: ab
+
+-   Direkter Effekt X on Y nach dem für M kontrolliert wurde: c’ = c - ab
+
+
+```{r}
+#| code-fold: true
+
+library(jtools)
+
+export_summs(model_c, model_a, model_b_cprime)
+```
+
+# R Skript
+
+Im Folgenden Beispiel wollen wir untersuchen, ob ein geringer Selbstwert auf Seiten der Beziehungsberechtigten dazu beiträgt, dass diese bei negativem Affekt eher zu Bestrafungen greifen.
+
+```{r message=FALSE}
+
+# Daten einlesen
+
+parenting_data = read.csv2("parenting_data.csv", sep = ";") 
+# alternativ: df <- read.csv2() 
+
+
+```
+
+```{r message=FALSE}
+
+#  Mediationsanalyse nach Barron & Kenny
+# ----------------------------------------------------------
+
+#  Step 1: Gibt es einen direkten Hauptweffekt x -> y? (path c)
+
+path_c =lm(strafen ~ negative_affect_z, data = parenting_data)
+#summ(path_c)$coef
+
+#  Step 2: Gibt es einen signifikanten Zusammenhang zwischen X und M? (path a)
+
+path_a =lm(selbstwert_z ~ negative_affect_z, data = parenting_data)
+#summ(path_a)$coef
+
+#  Step 3: Gibt es gleichzeitig einen Zusammenhang zwischen X und Y, wenn man für X kontrolliert? (path b)
+#  Step 4: Verschwindet / verringert sich der Effekt zwischen X und Y, wenn man für M kontrolliert? (path c')
+
+path_b_cprime =lm(strafen  ~ selbstwert_z + negative_affect_z, data = parenting_data)
+#summ(path_b_cprime)$coef
+
+# Visualize Summary
+
+library(jtools)
+
+export_summs(path_c, path_a, path_b_cprime)
+
+```
+
+## Exkurs: Testung des Mediationseffekts 
+
+Die Herangehensweise nach Barron und Kenny liefert Evidenz für oder gegen einen Mediationseffekt, jedoch keinen Test desselben. Eine Herangehensweise zur Testung des Mediationseffektes soll im Folgenden vorgestellt werden.  
+
+```{r message=FALSE}
+
+#  Testung des Mediationseffekts (ab) mit Bootstrapped Intervals
+# -------------------------------------------------------------------------------------
+
+
+parenting_data$negative_affect_z <- as.numeric(scale(parenting_data$negative_affect))
+parenting_data$selbstwert_z <- as.numeric(scale(parenting_data$selbstwert))
+
+parenting_data <- parenting_data %>%
+  dplyr::select(negative_affect_z, selbstwert_z, strafen) %>%
+  na.omit()
+
+med_model <- lm(selbstwert_z ~ negative_affect_z, data = parenting_data)
+out_model <- lm(strafen ~ selbstwert_z + negative_affect_z, data = parenting_data)
+
+
+mediate_test <- mediate(med_model, out_model,
+                        treat = "negative_affect_z",
+                        mediator = "selbstwert_z",
+                        boot = TRUE, sims = 5000)
+
+summary(mediate_test)
+
+
+    # Interpretation
+
+# ACME: Das ist der indirekte Effekt (Average Causal Mediation Effect) — der Teil von X’s Effect auf Y, der durch den Mediator M vermittelt wird
+
+# ADE: Das ist der direkte Effekt; der Effekt von X auf Y unter Kontrolle des Einflusses von M
+
+```
+

@@ -1,0 +1,23 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "mywebsite"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - mediationsanalyse.qmd
+        
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+editor: visual
+
+
+
