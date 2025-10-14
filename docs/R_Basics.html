@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>About – Resources for Students</title>
+<title>R Basics – Resources for Students</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -80,9 +114,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      Resources for Students
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./R_Basics.html">R Basics</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -115,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./R_Basics.html" class="sidebar-item-text sidebar-link">
+  <a href="./R_Basics.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">R Basics</span></a>
   </div>
 </li>
@@ -130,15 +162,28 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#r-basics-getting-started" id="toc-r-basics-getting-started" class="nav-link active" data-scroll-target="#r-basics-getting-started">R Basics: Getting Started</a>
+  <ul class="collapse">
+  <li><a href="#den-working-directory-setzen-wo-findet-r-die-daten" id="toc-den-working-directory-setzen-wo-findet-r-die-daten" class="nav-link" data-scroll-target="#den-working-directory-setzen-wo-findet-r-die-daten">Den Working Directory setzen: Wo findet R die Daten?</a></li>
+  <li><a href="#r-packages-und-befehle" id="toc-r-packages-und-befehle" class="nav-link" data-scroll-target="#r-packages-und-befehle">R Packages und Befehle</a></li>
+  <li><a href="#daten-einlesen" id="toc-daten-einlesen" class="nav-link" data-scroll-target="#daten-einlesen">Daten einlesen</a></li>
+  <li><a href="#daten-kennen-lernen" id="toc-daten-kennen-lernen" class="nav-link" data-scroll-target="#daten-kennen-lernen">Daten kennen lernen</a></li>
+  <li><a href="#daten-aufbereiten" id="toc-daten-aufbereiten" class="nav-link" data-scroll-target="#daten-aufbereiten">Daten aufbereiten</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">R Basics</h1>
 </div>
 
 
@@ -155,9 +200,105 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>About this site</p>
+<section id="r-basics-getting-started" class="level1">
+<h1>R Basics: Getting Started</h1>
+<p>Diese Seite einthält eine Reihe R-Befehle, welche dabei helfen, erfolgreich in ein R-Projekt zu starten. Es werden die Grundlagen für das Einlesen und Kennenlernen neuer Daten, sowie erste Bearbeitungsschritte zusammengefasst.</p>
+<section id="den-working-directory-setzen-wo-findet-r-die-daten" class="level3">
+<h3 class="anchored" data-anchor-id="den-working-directory-setzen-wo-findet-r-die-daten">Den Working Directory setzen: Wo findet R die Daten?</h3>
+<p>Eine häufige Fehlermeldung beim Einlesen von Daten ist “no such file or directory”. Die häufigste Ursache ist, dass nicht spezifiziert wurde, über welchen Weg (directory) R auf den Datensatz zugreifen soll.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Es empfielt sich, alle für eine R Session relevanten Dateien im selben Ordner abzulegen, damit der Working Directory nicht innerhalb einer R-Session immer wieder neu gesetzt werden muss.</p>
+</div>
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#mit folgendem Befehl kann der Working Directory festgelegt werden:</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>()</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Manuell: Manüleiste &gt; Session &gt; Set Working Directory &gt; Choose Directory...</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#welchen Working Directory R gerade verwendet, verrät folgender Befehl:</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="r-packages-und-befehle" class="level3">
+<h3 class="anchored" data-anchor-id="r-packages-und-befehle">R Packages und Befehle</h3>
+<p>R ist eine Open Source Software, für die jede:r Befehle entwickeln kann. Befehle, die nicht zur R Software selber gehören, sind in sogenannten <strong>packages</strong> abgelegt.</p>
+<p>Damit die Befehle eines Packages verwendet werden können, muss das entsprechende Package geladen werden (so lässt sich verhindern, dass sich die dezentral entwickelten Befehle unterschiedlicher Packages in die Quere kommen - bspw. weil sie ähnlich heissen oder anderweitig konfligieren).</p>
+<p>Voraussetzung für das Laden eines Packages ist, dass es bereits installiert wurde.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"carData"</span>) <span class="co"># packes installieren</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(carData) <span class="co"># packages laden</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="daten-einlesen" class="level3">
+<h3 class="anchored" data-anchor-id="daten-einlesen">Daten einlesen</h3>
+<p>Mit R lassen sich unterschiedliche Daten-Formate einlesen. Je nach dem, wie der Datensatz gespeichert ist (bspw. in einer Excel-Tabelle .xlx oder im Textformat .txt) wird ein anderer Befehl verwendet.</p>
+<p>Manche Befehle sind flexibel: Read.csv2 ist primär auf Daten ausgelegt, deren Werte mit Kommas getrennt werden (comma seperated values), mit “sep =”” lässt sich aber spezifizieren, ob die Werte durch Kommas, Semicolons oder Abstände getrennt sind.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Excel</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>excel_data <span class="ot">=</span> <span class="fu">read_excel</span>()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabellen </span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>table_data <span class="ot">=</span> <span class="fu">read.delim2</span>()</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Komma-getrennte Werte (oder Werte, die durch Semicolons oder Abstände getrennt sind - eignet sich generell gut für Numbers-Datein auf Mac)</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>csv_data <span class="ot">=</span> <span class="fu">read.csv2</span>() <span class="co">#Beispiel: csv_data = read.csv2(file, sep = ";")</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="daten-kennen-lernen" class="level3">
+<h3 class="anchored" data-anchor-id="daten-kennen-lernen">Daten kennen lernen</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Um sich einen groben Überblick zu verschaffen: </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Den Datensatz anzeigen (in separatem Fenster)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(Data)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Teile des Datensatzes anzeigen (in der Console)</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data) <span class="co"># zeigt die obersten Zeilen des Datensatzes "data" an</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(data) <span class="co"># zeigt die letzten Zeilen des Datensatzes "data" an</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Die Werte im Datensatz verstehen</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data) <span class="co"># fasst die Variablen des Datensatzes "data" statistisch zusammen</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data) <span class="co"># gibt die Struktur der Variablen des Datensatzes "data" an</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Die Grobstruktur des Datensatzes verstehen</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">is.data.frame</span>(data) <span class="co">#handelt es sich um einen Data Frame?</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">is.table</span>(data) <span class="co">#handelt es sich um eine Tabelle</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(data) <span class="co">#Anzahl Zeilen (meistens Beobachtungen / Subjects)</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(data) <span class="co">#Anzahl Spalten (meistens Variablen)</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(data<span class="sc">$</span>study_id) <span class="co">#Anzahl unterschiedlicher Study Id's, sofern diese unter "study_id" aufgeführt sind</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled" title="Exkurs: str() verstehen">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exkurs: str() verstehen
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+</section>
+<section id="daten-aufbereiten" class="level3">
+<h3 class="anchored" data-anchor-id="daten-aufbereiten">Daten aufbereiten</h3>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -1,0 +1,100 @@
+---
+title: "R Basics"
+---
+
+# R Basics: Getting Started
+
+Diese Seite einthält eine Reihe R-Befehle, welche dabei helfen, erfolgreich in ein R-Projekt zu starten. Es werden die Grundlagen für das Einlesen und Kennenlernen neuer Daten, sowie erste Bearbeitungsschritte zusammengefasst. 
+
+
+### Den Working Directory setzen: Wo findet R die Daten?
+
+Eine häufige Fehlermeldung beim Einlesen von Daten ist "no such file or directory". Die häufigste Ursache ist, dass nicht spezifiziert wurde, über welchen Weg (directory) R auf den Datensatz zugreifen soll. 
+
+::: {.callout-warning }
+
+Es empfielt sich, alle für eine R Session relevanten Dateien im selben Ordner abzulegen, damit der Working Directory nicht innerhalb einer R-Session immer wieder neu gesetzt werden muss. 
+
+:::
+
+```{r}
+# mit folgendem Befehl kann der Working Directory festgelegt werden
+setwd("/YourName/Desctop/FolderName")
+
+# Manuell: Manüleiste > Session > Set Working Directory > Choose Directory...
+
+#  welchen Working Directory R gerade verwendet, verrät folgender Befehl
+
+getwd()
+
+```
+
+
+### R Packages und Befehle
+
+R ist eine Open Source Software, für die jede:r Befehle entwickeln kann. Befehle, die nicht zur R Software selber gehören, sind in sogenannten **packages** abgelegt.
+
+Damit die Befehle eines Packages verwendet werden können, muss das entsprechende Package geladen werden (so lässt sich verhindern, dass sich die dezentral entwickelten Befehle unterschiedlicher Packages in die Quere kommen - bspw. weil sie ähnlich heissen oder anderweitig konfligieren). 
+
+Voraussetzung für das Laden eines Packages ist, dass es bereits installiert wurde. 
+
+```{r}
+install.packages("carData") # packes installieren
+library(carData) # packages laden
+```
+
+
+### Daten einlesen
+
+Mit R lassen sich unterschiedliche Daten-Formate einlesen. Je nach dem, wie der Datensatz gespeichert ist (bspw. in einer Excel-Tabelle .xlx oder im Textformat .txt) wird ein anderer Befehl verwendet. 
+
+Manche Befehle sind flexibel: Read.csv2 ist primär auf Daten ausgelegt, deren Werte mit Kommas getrennt werden (comma seperated values), mit "sep = "" lässt sich aber spezifizieren, ob die Werte durch Kommas, Semicolons oder Abstände getrennt sind.  
+
+
+```{r}
+
+# Excel
+excel_data = read_excel()
+
+# Tabellen 
+table_data = read.delim2()
+
+# Komma-getrennte Werte (oder Werte, die durch Semicolons oder Abstände getrennt sind - eignet sich generell gut für Numbers-Datein auf Mac)
+csv_data = read.csv2() #Beispiel: csv_data = read.csv2(file, sep = ";")
+
+
+
+```
+
+### Daten kennen lernen
+
+```{r}
+
+# Um sich einen groben Überblick zu verschaffen: 
+
+## Den Datensatz anzeigen (in separatem Fenster)
+View(Data)
+
+## Teile des Datensatzes anzeigen (in der Console)
+head(data) # zeigt die obersten Zeilen des Datensatzes "data" an
+tail(data) # zeigt die letzten Zeilen des Datensatzes "data" an
+
+## Die Werte im Datensatz verstehen
+summary(data) # fasst die Variablen des Datensatzes "data" statistisch zusammen
+str(data) # gibt die Struktur der Variablen des Datensatzes "data" an
+
+## Die Grobstruktur des Datensatzes verstehen
+is.data.frame(data) #handelt es sich um einen Data Frame?
+is.table(data) #handelt es sich um eine Tabelle
+nrow(data) #Anzahl Zeilen (meistens Beobachtungen / Subjects)
+ncol(data) #Anzahl Spalten (meistens Variablen)
+unique(data$study_id) #Anzahl unterschiedlicher Study Id's, sofern diese unter "study_id" aufgeführt sind
+```
+
+::: {.callout-note collapse="true" title="Exkurs: str() verstehen"}
+
+
+
+:::
+
+### Daten aufbereiten

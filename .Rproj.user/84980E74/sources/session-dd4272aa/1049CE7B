@@ -1,14 +1,14 @@
 {
-    "id": "0B07E5BB",
-    "path": "~/mywebsite/mediationsanalyse.qmd",
-    "project_path": "mediationsanalyse.qmd",
+    "id": "1049CE7B",
+    "path": "~/mywebsite/R_Basics.qmd",
+    "project_path": "R_Basics.qmd",
     "type": "quarto_markdown",
-    "hash": "0",
+    "hash": "3636172887",
     "contents": "",
     "dirty": false,
-    "created": 1760356778248.0,
+    "created": 1760444106920.0,
     "source_on_save": false,
-    "relative_order": 3,
+    "relative_order": 5,
     "properties": {
         "rmdVisualMode": "false",
         "rmdVisualWrapConfigured": "true",
@@ -17,16 +17,16 @@
         "Source": "Source",
         "docOutlineVisible": "1",
         "rmdVisualCollapsedChunks": "",
-        "cursorPosition": "110,35",
-        "scrollLine": "103",
-        "rmdVisualModeLocation": "2:0"
+        "cursorPosition": "66,3",
+        "scrollLine": "71",
+        "rmdVisualModeLocation": "971:41"
     },
     "folds": "",
-    "lastKnownWriteTime": 1760366561,
+    "lastKnownWriteTime": 1760444282,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1760366561934,
+    "last_content_update": 1760444282268,
     "read_only": false,
     "read_only_alternatives": []
 }

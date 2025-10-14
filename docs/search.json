@@ -50,6 +50,13 @@
     ]
   },
   {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Resources for Students",
@@ -60,10 +67,13 @@
     ]
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "R_Basics.html",
+    "href": "R_Basics.html",
+    "title": "R Basics",
     "section": "",
-    "text": "About this site"
+    "text": "R Basics: Getting Started\nDiese Seite einthält eine Reihe R-Befehle, welche dabei helfen, erfolgreich in ein R-Projekt zu starten. Es werden die Grundlagen für das Einlesen und Kennenlernen neuer Daten, sowie erste Bearbeitungsschritte zusammengefasst.\n\nDen Working Directory setzen: Wo findet R die Daten?\nEine häufige Fehlermeldung beim Einlesen von Daten ist “no such file or directory”. Die häufigste Ursache ist, dass nicht spezifiziert wurde, über welchen Weg (directory) R auf den Datensatz zugreifen soll.\n\n\n\n\n\n\nWarning\n\n\n\nEs empfielt sich, alle für eine R Session relevanten Dateien im selben Ordner abzulegen, damit der Working Directory nicht innerhalb einer R-Session immer wieder neu gesetzt werden muss.\n\n\n\n#mit folgendem Befehl kann der Working Directory festgelegt werden:\n\nsetwd()\n\n#Manuell: Manüleiste &gt; Session &gt; Set Working Directory &gt; Choose Directory...\n\n#welchen Working Directory R gerade verwendet, verrät folgender Befehl:\n\ngetwd()\n\n\nR Packages und Befehle\nR ist eine Open Source Software, für die jede:r Befehle entwickeln kann. Befehle, die nicht zur R Software selber gehören, sind in sogenannten packages abgelegt.\nDamit die Befehle eines Packages verwendet werden können, muss das entsprechende Package geladen werden (so lässt sich verhindern, dass sich die dezentral entwickelten Befehle unterschiedlicher Packages in die Quere kommen - bspw. weil sie ähnlich heissen oder anderweitig konfligieren).\nVoraussetzung für das Laden eines Packages ist, dass es bereits installiert wurde.\ninstall.packages(\"carData\") # packes installieren\nlibrary(carData) # packages laden\n\n\nDaten einlesen\nMit R lassen sich unterschiedliche Daten-Formate einlesen. Je nach dem, wie der Datensatz gespeichert ist (bspw. in einer Excel-Tabelle .xlx oder im Textformat .txt) wird ein anderer Befehl verwendet.\nManche Befehle sind flexibel: Read.csv2 ist primär auf Daten ausgelegt, deren Werte mit Kommas getrennt werden (comma seperated values), mit “sep =”” lässt sich aber spezifizieren, ob die Werte durch Kommas, Semicolons oder Abstände getrennt sind.\n\n# Excel\nexcel_data = read_excel()\n\n# Tabellen \ntable_data = read.delim2()\n\n# Komma-getrennte Werte (oder Werte, die durch Semicolons oder Abstände getrennt sind - eignet sich generell gut für Numbers-Datein auf Mac)\ncsv_data = read.csv2() #Beispiel: csv_data = read.csv2(file, sep = \";\")\n\n\n\n\nDaten kennen lernen\n\n# Um sich einen groben Überblick zu verschaffen: \n\n## Den Datensatz anzeigen (in separatem Fenster)\nView(Data)\n\n## Teile des Datensatzes anzeigen (in der Console)\nhead(data) # zeigt die obersten Zeilen des Datensatzes \"data\" an\ntail(data) # zeigt die letzten Zeilen des Datensatzes \"data\" an\n\n## Die Werte im Datensatz verstehen\nsummary(data) # fasst die Variablen des Datensatzes \"data\" statistisch zusammen\nstr(data) # gibt die Struktur der Variablen des Datensatzes \"data\" an\n\n## Die Grobstruktur des Datensatzes verstehen\nis.data.frame(data) #handelt es sich um einen Data Frame?\nis.table(data) #handelt es sich um eine Tabelle\nnrow(data) #Anzahl Zeilen (meistens Beobachtungen / Subjects)\nncol(data) #Anzahl Spalten (meistens Variablen)\nunique(data$study_id) #Anzahl unterschiedlicher Study Id's, sofern diese unter \"study_id\" aufgeführt sind\n\n\n\n\n\n\nExkurs: str() verstehen\n\n\n\n\n\n\n\n\n\n\n\nDaten aufbereiten",
+    "crumbs": [
+      "R Basics"
+    ]
   }
 ]
