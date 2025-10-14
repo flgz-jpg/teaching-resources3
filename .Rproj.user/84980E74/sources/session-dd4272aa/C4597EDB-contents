@@ -57,3 +57,8 @@ mediate_test <- mediate(med_model, out_model,
 summary(mediate_test)
 
 
+git add -A
+fp-4734:mywebsite flogoz$ git commit -m "Update page X"
+[main 76824d5] Update page X
+
+
