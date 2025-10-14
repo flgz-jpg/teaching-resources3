@@ -2,7 +2,6 @@
 title: "R Basics"
 ---
 
-# R Basics: Getting Started
 
 Diese Seite einthält eine Reihe R-Befehle, welche dabei helfen, erfolgreich in ein R-Projekt zu starten. Es werden die Grundlagen für das Einlesen und Kennenlernen neuer Daten, sowie erste Bearbeitungsschritte zusammengefasst.
 
@@ -76,7 +75,6 @@ head(data) # zeigt die obersten Zeilen des Datensatzes "data" an
 tail(data) # zeigt die letzten Zeilen des Datensatzes "data" an
 
 ## Die Werte im Datensatz verstehen
-summary(data) # fasst die Variablen des Datensatzes "data" statistisch zusammen
 str(data) # gibt die Struktur der Variablen des Datensatzes "data" an
 
 ## Die Grobstruktur des Datensatzes verstehen
@@ -87,7 +85,13 @@ ncol(data) #Anzahl Spalten (meistens Variablen)
 unique(data$study_id) #Anzahl unterschiedlicher Study Id's, sofern diese unter "study_id" aufgeführt sind
 ```
 
-::: {.callout-note collapse="true" title="Exkurs: str() verstehen"}
+### Variablen-Typen in R
+
+Anhand des in R integrierten Datensatzes Cars93 aus dem Jahr 1993 der Daten zu 93 Autos enthält, lassen sich unterschiedliche Variablen-Typen in R illustrieren. Der Datensatz muss nicht eingelesen werden; R kann direkt auf ihn zugreifen.  
+
+```r
+str(Cars93) 
+```
 :::
 
 ### Daten aufbereiten

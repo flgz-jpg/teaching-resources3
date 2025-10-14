@@ -5,6 +5,11 @@ project:
 website:
   title: "Resources for Students"
   
+  navbar: 
+    right:
+      - text: Comments / Feedback
+      - url: mailto:logozflora@gmail.com
+    
   sidebar:
     contents: 
       - href: index.qmd

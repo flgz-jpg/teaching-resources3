@@ -36,7 +36,6 @@ Ein Mediationseffekt ist ein
 - Indirekter Effekt
 - Der Effekt der UV auf die AV wird durch einen Mediator M vermittelt
 - Es handelt sich um eine kausale Kette / einen Mechanismus
-
 :::
 
 ## Wie lässt sich das überprüfen?
@@ -152,7 +151,7 @@ export_summs(model_c, model_a, model_b_cprime)
 
 # R Skript
 
-Im Folgenden Beispiel wollen wir untersuchen, ob ein geringer Selbstwert auf Seiten der Beziehungsberechtigten dazu beiträgt, dass diese bei negativem Affekt eher zu Bestrafungen greifen.
+Im folgenden Beispiel wollen wir untersuchen, ob ein hostiler Attributionsstil (hostility) dazu beiträgt, dass emotional instabilere Personen (emotionality) vermehrt bestrafendes Erziehungsverhalten zeigen. Konkret: Wir wollen untersuchen, ob ein negativer Attributionsstil den vermeintlichen Zusammenhang zwischen emotionaler Instabilität und bestrafendem Erziehungsverhalten mediiert. 
 
 ```{r message=FALSE}
 
@@ -208,7 +207,6 @@ Die Herangehensweise nach Barron und Kenny liefert Evidenz für oder gegen einen
 
 #  Testung des Mediationseffekts (ab) mit Bootstrapped Intervals
 # -------------------------------------------------------------------------------------
-
 
 
 
