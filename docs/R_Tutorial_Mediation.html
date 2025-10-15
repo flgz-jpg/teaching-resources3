@@ -167,7 +167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mediationsanalyse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Mediationsanalyse</span></a>
+ <span class="menu-text">Input: Mediationsanalyse</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -271,11 +271,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>hostility_z <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(<span class="fu">as.numeric</span>(data<span class="sc">$</span>hostility)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
-<li>Mediationsanalyse nach Barron und Kenny</li>
+<li>Mediationsanalyse nach Baron und Kenny</li>
 </ol>
 <p>Kopieren Sie untenstehenden Code in ihr R Script, fügen Sie die Variablen punishment, emotionality_z und hostility_z an den entsprechenden Stellen im Code ein und lassen Sie sich den Output ausgeben.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#  Mediationsanalyse nach Barron &amp; Kenny</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#  Mediationsanalyse nach Baron &amp; Kenny</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jtools)</span>
@@ -311,7 +311,7 @@ Exkurs: Testung des Mediationseffekts
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Die Herangehensweise nach Barron und Kenny liefert Evidenz für oder gegen einen Mediationseffekt, jedoch keinen Test desselben. Eine Herangehensweise zur Testung des Mediationseffektes soll im Folgenden vorgestellt werden.</p>
+<p>Die Herangehensweise nach Baron und Kenny liefert Evidenz für oder gegen einen Mediationseffekt, jedoch keinen Test desselben. Eine Herangehensweise zur Testung des Mediationseffektes soll im Folgenden vorgestellt werden.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  Testung des Mediationseffekts (ab) mit Bootstrapped Intervals</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># -------------------------------------------------------------------------------------</span></span>
@@ -338,10 +338,10 @@ Causal Mediation Analysis
 Nonparametric Bootstrap Confidence Intervals with the Percentile Method
 
                 Estimate 95% CI Lower 95% CI Upper p-value    
-ACME            0.150157     0.116592     0.183517  &lt;2e-16 ***
-ADE             0.002699    -0.054108     0.060416   0.938    
-Total Effect    0.152856     0.095728     0.208262  &lt;2e-16 ***
-Prop. Mediated  0.982343     0.696002     1.526987  &lt;2e-16 ***
+ACME            0.150157     0.117949     0.186095  &lt;2e-16 ***
+ADE             0.002699    -0.052391     0.059647  0.9012    
+Total Effect    0.152856     0.099456     0.209679  &lt;2e-16 ***
+Prop. Mediated  0.982343     0.695143     1.489085  &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 

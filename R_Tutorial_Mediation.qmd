@@ -48,14 +48,14 @@ data$emotionality_z <- as.numeric(scale(as.numeric(data$emotionality)))
 data$hostility_z <- as.numeric(scale(as.numeric(data$hostility)))
 ```
 
-2.  Mediationsanalyse nach Barron und Kenny
+2.  Mediationsanalyse nach Baron und Kenny
 
 Kopieren Sie untenstehenden Code in ihr R Script, fügen Sie die Variablen punishment, emotionality_z und hostility_z an den entsprechenden Stellen im Code ein und lassen Sie sich den Output ausgeben. 
 
 
 ``` r
 
-#  Mediationsanalyse nach Barron & Kenny
+#  Mediationsanalyse nach Baron & Kenny
 # ----------------------------------------------------------
 
 library(jtools)
@@ -83,7 +83,7 @@ export_summs(path_c, path_a, path_b_cprime)
 
 ::: {.callout-note collapse=true  title="Exkurs: Testung des Mediationseffekts"}
 
-Die Herangehensweise nach Barron und Kenny liefert Evidenz für oder gegen einen Mediationseffekt, jedoch keinen Test desselben. Eine Herangehensweise zur Testung des Mediationseffektes soll im Folgenden vorgestellt werden.
+Die Herangehensweise nach Baron und Kenny liefert Evidenz für oder gegen einen Mediationseffekt, jedoch keinen Test desselben. Eine Herangehensweise zur Testung des Mediationseffektes soll im Folgenden vorgestellt werden.
 
 ```{r}
 

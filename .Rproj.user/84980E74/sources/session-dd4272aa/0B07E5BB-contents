@@ -36,9 +36,9 @@ Ein Mediationseffekt ist ein
 
 ## Wie lässt sich das überprüfen?
 
-Es gibt unterschiedliche Methoden, um Mediationseffekte zu prüfen. In diesem Beispiel werden wir die klassische Methode von Barron und Kenney (1986) verwenden. Es handelt sich dabei um eine nicht unumstrittene, aber gut etablierte Methode.
+Es gibt unterschiedliche Methoden, um Mediationseffekte zu prüfen. In diesem Beispiel werden wir die klassische Methode von Baron und Kenney (1986) verwenden. Es handelt sich dabei um eine nicht unumstrittene, aber gut etablierte Methode.
 
-### Barron und Kenny (1986)
+### Baron und Kenny (1986)
 
 Diese Methode umfasst 4 Schritte:
 
@@ -61,7 +61,7 @@ graph LR
 
 **"Partial Mediation"**: Wenn für M kontrolliert wird, wird der Zusammenhang kleiner
 
-::: {.callout-warning title="Methode von Barron und Kenny (1986)"}
+::: {.callout-warning title="Methode von Baron und Kenny (1986)"}
 1.  Prüfung eines signifikanten **direkten Zusammenhangs** zwischen UV und AV
 2.  Prüfung eines signifikanten Zusammenhangs zwischen UV und M
 3.  Prüfung eines signifikanten Zusammenhangs zwischen M und AV unter Kontrolle der UV
@@ -155,7 +155,7 @@ data$hostility_z <- as.numeric(scale(as.numeric(data$hostility)))
 
 ```{r message=FALSE}
 
-#  Mediationsanalyse nach Barron & Kenny
+#  Mediationsanalyse nach Baron & Kenny
 # ----------------------------------------------------------
 
 #  Step 1: Gibt es einen direkten Hauptweffekt x -> y? (path c)
@@ -184,7 +184,7 @@ export_summs(path_c, path_a, path_b_cprime)
 
 ## Exkurs: Testung des Mediationseffekts
 
-Die Herangehensweise nach Barron und Kenny liefert Evidenz für oder gegen einen Mediationseffekt, jedoch keinen Test desselben. Eine Herangehensweise zur Testung des Mediationseffektes soll im Folgenden vorgestellt werden.
+Die Herangehensweise nach Baron und Kenny liefert Evidenz für oder gegen einen Mediationseffekt, jedoch keinen Test desselben. Eine Herangehensweise zur Testung des Mediationseffektes soll im Folgenden vorgestellt werden.
 
 ```{r message=FALSE}
 
