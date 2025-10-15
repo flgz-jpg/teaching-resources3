@@ -13,50 +13,42 @@ library(mediation)
 
 ## Beispiel
 
-In den Daten einer Studie zu den negativen Effekten von Internet-Konsum auf die Studienleistung zeigt sich, dass Personen, die im offenen Antwortformat angegeben haben, sich regelmässig süsse Katzenvideos auf TikTok anzusehen, entgegen allen Erwartungen bessere Noten schreiben. 
-
-
+In den Daten einer Studie zu den negativen Effekten von Internet-Konsum auf die Studienleistung zeigt sich, dass Personen, die im offenen Antwortformat angegeben haben, sich regelmässig süsse Katzenvideos auf TikTok anzusehen, entgegen allen Erwartungen bessere Noten schreiben.
 
 ```{mermaid}
 graph LR
     A[Süsse Katzenvideos] -- Signifikanter Effekt --> B[Produktivität]
 ```
 
-
 **Handelt es sich hierbei um einen plausiblen Zusammenhang? Welche Alternativen wären denkbar?**
 
-Aus der Literatur weiss die Masterandin in dem Projekt, dass eine gute Stimmung sich positiv auf das Lernen auswirkt. Daraus schliesst sie, dass der Effekt zwischen süssen Katzenvideos und besserer Studienleistung über die gute Stimmung vermittelt wird. 
+Aus der Literatur weiss die Masterandin in dem Projekt, dass eine gute Stimmung sich positiv auf das Lernen auswirkt. Daraus schliesst sie, dass der Effekt zwischen süssen Katzenvideos und besserer Studienleistung über die gute Stimmung vermittelt wird.
 
-Sie nimmt also an, dass es sich um einen **Mediationseffekt** handelt. Der **indirekte Effekt** der Unabhängigen Variable (UV; süsse Katzenvideos) auf die Abhängige Variable (AV; besser Studienleistung) wird über einen **Mediator (M; gute Stimmung)** vermittelt.  
+Sie nimmt also an, dass es sich um einen **Mediationseffekt** handelt. Der **indirekte Effekt** der Unabhängigen Variable (UV; süsse Katzenvideos) auf die Abhängige Variable (AV; besser Studienleistung) wird über einen **Mediator (M; gute Stimmung)** vermittelt.
 
 ::: {.callout-warning title="Definition Mediationseffekt"}
-
 Ein Mediationseffekt ist ein
 
-- Indirekter Effekt
-- Der Effekt der UV auf die AV wird durch einen Mediator M vermittelt
-- Es handelt sich um eine kausale Kette / einen Mechanismus
+-   Indirekter Effekt
+-   Der Effekt der UV auf die AV wird durch einen Mediator M vermittelt
+-   Es handelt sich um eine kausale Kette / einen Mechanismus
 :::
 
 ## Wie lässt sich das überprüfen?
 
-Es gibt unterschiedliche Methoden, um Mediationseffekte zu prüfen. In diesem Beispiel werden wir die klassische Methode von Barron und Kenney (1986) verwenden. Es handelt sich dabei um eine nicht unumstrittene, aber gut etablierte Methode. 
+Es gibt unterschiedliche Methoden, um Mediationseffekte zu prüfen. In diesem Beispiel werden wir die klassische Methode von Barron und Kenney (1986) verwenden. Es handelt sich dabei um eine nicht unumstrittene, aber gut etablierte Methode.
 
 ### Barron und Kenny (1986)
 
 Diese Methode umfasst 4 Schritte:
 
-- Schätzung der Beziehung zwischen X und Y
-→ Der Effekt c muss signifikant von 0 verschieden sein.
+-   Schätzung der Beziehung zwischen X und Y → Der Effekt c muss signifikant von 0 verschieden sein.
 
-- Schätzung der Beziehung zwischen X und M
-→ Der Effekt a muss signifikant von 0 verschieden sein.
+-   Schätzung der Beziehung zwischen X und M → Der Effekt a muss signifikant von 0 verschieden sein.
 
-- Schätzung der Beziehung zwischen M und Y unter Kontrolle von X
-→ Der Effekt b muss signifikant von 0 verschieden sein.
+-   Schätzung der Beziehung zwischen M und Y unter Kontrolle von X → Der Effekt b muss signifikant von 0 verschieden sein.
 
-- Schätzung der Beziehung zwischen X und Y unter Kontrolle von M
-→ Der Effekt c′ sollte nicht signifikant sein und nahe bei 0 liegen.
+-   Schätzung der Beziehung zwischen X und Y unter Kontrolle von M → Der Effekt c′ sollte nicht signifikant sein und nahe bei 0 liegen.
 
 ```{mermaid}
 graph LR
@@ -70,14 +62,11 @@ graph LR
 **"Partial Mediation"**: Wenn für M kontrolliert wird, wird der Zusammenhang kleiner
 
 ::: {.callout-warning title="Methode von Barron und Kenny (1986)"}
-
-1. Prüfung eines signifikanten **direkten Zusammenhangs** zwischen UV und AV
-2. Prüfung eines signifikanten Zusammenhangs zwischen UV und M
-3. Prüfung eines signifikanten Zusammenhangs zwischen M und AV unter Kontrolle der UV
-4. Wenn für M kontrolliert wird, wird der Zusammehang zwischen UV und AV **kleiner / nicht mehr signifikant**
-
+1.  Prüfung eines signifikanten **direkten Zusammenhangs** zwischen UV und AV
+2.  Prüfung eines signifikanten Zusammenhangs zwischen UV und M
+3.  Prüfung eines signifikanten Zusammenhangs zwischen M und AV unter Kontrolle der UV
+4.  Wenn für M kontrolliert wird, wird der Zusammehang zwischen UV und AV **kleiner / nicht mehr signifikant**
 :::
-
 
 ## In R
 
@@ -104,7 +93,6 @@ head(data)
 
 ```
 
-
 ::: {.callout-note collapse="true" title="1.Schätzung der Beziehung zwischen X und Y→ Der Effekt c muss signifikant von 0 verschieden sein."}
 ```{r}
 # Schritt 1: X → Y (Total Effect c)
@@ -122,7 +110,6 @@ summ(model_a)$coef
 ```
 :::
 
-
 ::: {.callout-note collapse="true" title="3.&4.Schätzung der Beziehung zwischen M und Y unter Kontrolle von X→ Der Effekt b muss signifikant von 0 verschieden sein / Der Effekt c' wird kleiner / nicht mehr signifikant."}
 ```{r}
 # Schritt 3: M → Y (kontrolliert für X) (Path b)
@@ -132,14 +119,11 @@ summ(model_b_cprime)$coef
 ```
 :::
 
-
-
 -   Totaler Effekt von X auf Y: c = c’ + ab
 
 -   Indirekter Effekt von X auf Y: ab
 
 -   Direkter Effekt X on Y nach dem für M kontrolliert wurde: c’ = c - ab
-
 
 ```{r}
 #| code-fold: true
@@ -151,7 +135,7 @@ export_summs(model_c, model_a, model_b_cprime)
 
 # R Skript
 
-Im folgenden Beispiel wollen wir untersuchen, ob ein hostiler Attributionsstil (hostility) dazu beiträgt, dass emotional instabilere Personen (emotionality) vermehrt bestrafendes Erziehungsverhalten zeigen. Konkret: Wir wollen untersuchen, ob ein negativer Attributionsstil den vermeintlichen Zusammenhang zwischen emotionaler Instabilität und bestrafendem Erziehungsverhalten mediiert. 
+Im folgenden Beispiel wollen wir untersuchen, ob ein hostiler Attributionsstil (hostility) dazu beiträgt, dass emotional instabilere Personen (emotionality) vermehrt bestrafendes Erziehungsverhalten zeigen. Konkret: Wir wollen untersuchen, ob ein negativer Attributionsstil den vermeintlichen Zusammenhang zwischen emotionaler Instabilität und bestrafendem Erziehungsverhalten mediiert.
 
 ```{r message=FALSE}
 
@@ -160,7 +144,6 @@ Im folgenden Beispiel wollen wir untersuchen, ob ein hostiler Attributionsstil (
 data = read.csv2("data.csv", sep = ";")
 # alternativ: df <- read.csv2() 
 
-# wir skalieren die Prädiktoren mit sclae(), um sie vergleichbar zu machen
 # as.numeric stellt sicher, dass die Variablen-Werte numerisch sind
 # mit str() lässts ich im Vorfeld überprüfen, wie die Variablen-Werte gespeichert sind
 
@@ -199,9 +182,9 @@ export_summs(path_c, path_a, path_b_cprime)
 
 ```
 
-## Exkurs: Testung des Mediationseffekts 
+## Exkurs: Testung des Mediationseffekts
 
-Die Herangehensweise nach Barron und Kenny liefert Evidenz für oder gegen einen Mediationseffekt, jedoch keinen Test desselben. Eine Herangehensweise zur Testung des Mediationseffektes soll im Folgenden vorgestellt werden.  
+Die Herangehensweise nach Barron und Kenny liefert Evidenz für oder gegen einen Mediationseffekt, jedoch keinen Test desselben. Eine Herangehensweise zur Testung des Mediationseffektes soll im Folgenden vorgestellt werden.
 
 ```{r message=FALSE}
 
@@ -232,4 +215,4 @@ summary(mediate_test)
 # ADE: Das ist der direkte Effekt; der Effekt von X auf Y unter Kontrolle des Einflusses von M
 
 ```
-
+Wir stellen fest: Der direkte Effek ACME ist signifikant. Es handelt sich also um einen Mediationseffekt. 

@@ -7,8 +7,8 @@ website:
   
   navbar: 
     right:
-      - text: Comments / Feedback
-      - url: mailto:logozflora@gmail.com
+      - href: mailto:logozflora@gmail.com
+        text: Comments / Feedback
     
   sidebar:
     contents: 
@@ -16,6 +16,7 @@ website:
         text: Home
       - R_Basics.qmd
       - mediationsanalyse.qmd
+      - R_Tutorial_Mediation.qmd
       
     
         

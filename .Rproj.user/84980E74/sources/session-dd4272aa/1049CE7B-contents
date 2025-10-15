@@ -2,7 +2,6 @@
 title: "R Basics"
 ---
 
-
 Diese Seite einthält eine Reihe R-Befehle, welche dabei helfen, erfolgreich in ein R-Projekt zu starten. Es werden die Grundlagen für das Einlesen und Kennenlernen neuer Daten, sowie erste Bearbeitungsschritte zusammengefasst.
 
 ### Den Working Directory setzen: Wo findet R die Daten?
@@ -24,20 +23,21 @@ setwd()
 #welchen Working Directory R gerade verwendet, verrät folgender Befehl:
 
 getwd()
-
-``` 
+```
 
 ### R Packages und Befehle
 
 R ist eine Open Source Software, für die jede:r Befehle entwickeln kann. Befehle, die nicht zur R Software selber gehören, sind in sogenannten **packages** abgelegt.
 
-Damit die Befehle eines Packages verwendet werden können, muss das entsprechende Package geladen werden (so lässt sich verhindern, dass sich die dezentral entwickelten Befehle unterschiedlicher Packages in die Quere kommen - bspw. weil sie ähnlich heissen oder anderweitig konfligieren).
+Damit die Befehle eines Packages verwendet werden können, muss das entsprechende Package geladen werden (so lässt sich im Umkehrschluss verhindern, dass sich die Befehle unterschiedlicher Packages in die Quere kommen - bspw. weil sie ähnlich heissen oder anderweitig konfligieren).
 
 Voraussetzung für das Laden eines Packages ist, dass es bereits installiert wurde.
 
 ``` r
 install.packages("carData") # packes installieren
-library(carData) # packages laden
+library(carData) # package laden
+library(dplyr, jtools) # mehrere packages gleichzeitig laden
+detach(carData, unload = TRUE) # laden von packages rückgängig machen
 ```
 
 ### Daten einlesen
@@ -46,7 +46,7 @@ Mit R lassen sich unterschiedliche Daten-Formate einlesen. Je nach dem, wie der 
 
 Manche Befehle sind flexibel: Read.csv2 ist primär auf Daten ausgelegt, deren Werte mit Kommas getrennt werden (comma seperated values), mit "sep = "" lässt sich aber spezifizieren, ob die Werte durch Kommas, Semicolons oder Abstände getrennt sind.
 
-```r
+``` r
 
 # Excel
 excel_data = read_excel()
@@ -56,42 +56,101 @@ table_data = read.delim2()
 
 # Komma-getrennte Werte (oder Werte, die durch Semicolons oder Abstände getrennt sind - eignet sich generell gut für Numbers-Datein auf Mac)
 csv_data = read.csv2() #Beispiel: csv_data = read.csv2(file, sep = ";")
-
-
-
 ```
 
 ### Daten kennen lernen
 
-```r
+Um die folgenden Schritte zu illustrieren, verwenden wir den in R enthaltenen Datensatzes Cars93, der Daten zu 93 US-amerikanischen Autos aus dem Jahr 1993 enthält. Der Datensatz muss nicht eingelesen werden; R kann direkt auf ihn zugreifen.
+
+``` r
 
 # Um sich einen groben Überblick zu verschaffen: 
 
 ## Den Datensatz anzeigen (in separatem Fenster)
-View(Data)
+View(Cars93)
 
 ## Teile des Datensatzes anzeigen (in der Console)
-head(data) # zeigt die obersten Zeilen des Datensatzes "data" an
-tail(data) # zeigt die letzten Zeilen des Datensatzes "data" an
+head(Cars93) # zeigt die obersten Zeilen des Datensatzes "Cars93" an
+tail(Cars93) # zeigt die letzten Zeilen des Datensatzes "Cars93" an
 
 ## Die Werte im Datensatz verstehen
-str(data) # gibt die Struktur der Variablen des Datensatzes "data" an
+str(Cars93) # gibt die Struktur der Variablen des Datensatzes "Cars93" an
 
 ## Die Grobstruktur des Datensatzes verstehen
-is.data.frame(data) #handelt es sich um einen Data Frame?
-is.table(data) #handelt es sich um eine Tabelle
-nrow(data) #Anzahl Zeilen (meistens Beobachtungen / Subjects)
-ncol(data) #Anzahl Spalten (meistens Variablen)
-unique(data$study_id) #Anzahl unterschiedlicher Study Id's, sofern diese unter "study_id" aufgeführt sind
+is.data.frame(Cars93) #handelt es sich um einen Cars93 Frame?
+is.table(Cars93) #handelt es sich um eine Tabelle
+nrow(Cars93) #Anzahl Zeilen (meistens Beobachtungen / Subjects)
+ncol(Cars93) #Anzahl Spalten (meistens Variablen)
+unique(Cars93$study_id) #Anzahl unterschiedlicher Study Id's, sofern diese unter "study_id" aufgeführt sind
 ```
 
 ### Variablen-Typen in R
 
-Anhand des in R integrierten Datensatzes Cars93 aus dem Jahr 1993 der Daten zu 93 Autos enthält, lassen sich unterschiedliche Variablen-Typen in R illustrieren. Der Datensatz muss nicht eingelesen werden; R kann direkt auf ihn zugreifen.  
+-   **Logical**: Logicals sind boolsche Variablen, d.h., sie können die Werte TRUE oder FALSE annehmen.
 
-```r
-str(Cars93) 
+``` r
+b = TRUE
+is.logical(b) # anhand is.logical() lässt sich herausfinden, ob eine Variable ein logical ist
+```
+
+-   **Factor**: Faktors sind ordinal skalierte Werte; sie sind kategorial, haben keine interpretierbaren Abstände, können aber hierarchische Beziehungen abbilden. Zulässige Operationen sind: gleich, ungleich, grösser und kleiner als. Mit str() lässt sich herausfinden, wieviele Abstufungen ein Factor hat.
+
+``` r
+str(Cars93$Origin) # str() gibt den Variablen-Typ aus. 
+is.factor(Cars93$Origin) # Alternativ kann mit is.factor spezifisch danach gefragt werden, ob es sich um einen Faktor handelt
+```
+
+-   **Integer**: Integer sind Variablen, die Ereignisse anhand positiver oder negativer ganzer Zahlen kodieren. Das bedeutet, dass sie keine Nachkommastellen haben. Das kann zu Schwierigkeiten bei Berechnungen führen. In diesem Fall sollten sie in numerische Werte umgewandelt werden.
+
+``` r
+is.integer(Cars93$RPM) 
+Cars93$RPM = as.numeric(Cars93$RPM) # Wandelt einen Integer in eine numerische Variable um 
+```
+
+-   **Numeric**: Numerische Variablen kodieren Ereignisse anhand reeller Zahlen. Das bedeutet, dass sie alle Punkte auf einem Zahlenstrahl abbilden und beliebigen Transformationen (Berechnungen) unterzogen werden können.
+
+(Für diejenigen, die es genau wissen wollen: Intern sind numerische Werte mit *x = (-1)\^s \* m \* b\^e* abgespeichert (d.h. als Gleitkommazahl).
+
+-   **Character**: Character sind Zeichenketten, auch *strings* genannt, deren Elemente in Anführungsstrichen gespeichert werden.
+
+### Daten bearbeiten
+
+::: {.callout-warning title="Der Erste Bearbeitungsschritt"}
+Nach dem Einlesen und Kennenlernen der Daten sollte der erste Bearbeitungsschritt immer das Erstellen einer Kopie der Daten sein. So muss der Datensatz nicht immer wieder neu eingelesen werden, falls bei einem Bearbeitungsschritt etwas schief geht.
+
+``` r
+df1 = df_org # Ein neues Objekt namens "df1" erstellen, in das die Inhalte von df_org abgelegt werden
+
+# In diesem Fall ist df1 eine exakte Kopie von df_org. df_org bleibt dabei unverändert.
 ```
 :::
 
-### Daten aufbereiten
+Df steht hier für data frame, welches das übliche Format für Datensätze in R ist und von den meisten Befehlgruppen zur Datenbearbeitung genutzt wird.
+
+Folglich ist eine häufige Quelle für Fehlermeldungen, das Datensätze noch nicht in die data frame Struktur gespeichert sind.
+
+``` r
+is.data.frame(df1) # prüfen, ob es sich bei df1 um einen data frame handelt
+as.data.frame(df1) # df1 in einen data frame umwandeln
+df2 = as.data.frame(df2) # ein neues Objekt erstellen, in das die Inhalte von df1 in der data frame Struktur abgelehgt werden
+```
+
+### Subsets erstellen
+
+Subsets oder Subsamples werden immer dann erstellt, wenn nur ein Teil des Datensatzes bearbeitet werden soll oder wenn Teile des Datensatzes getrennt betrachtet werden sollen. Das ist u.a. dann der Fall, wenn mit Teilstichproben gearbeitet wird. Manchmal verlangt auch die Struktur der Daten, dass der Datensatz aufgeteilt und nach der Bearbeitung wieder zusammen gesetzt wird.
+
+``` r
+# Eine Teilstichprobe erstellen
+
+
+
+```
+
+### Daten verändern
+
+```{r}
+
+```
+
+
+*in progress ... *

@@ -126,13 +126,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <span class="nav-link">
-<span class="menu-text">Comments / Feedback</span>
-    </span>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="mailto:logozflora@gmail.com"> 
-<span class="menu-text">mailto:logozflora@gmail.com</span></a>
+<span class="menu-text">Comments / Feedback</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -173,6 +168,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./mediationsanalyse.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Mediationsanalyse</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R_Tutorial_Mediation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R Tutorial: Mediationsanalyse</span></a>
   </div>
 </li>
     </ul>
@@ -479,12 +480,11 @@ happiness   0.6238113 0.09899469 6.301462 8.671883e-09</code></pre>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">read.csv2</span>(<span class="st">"data.csv"</span>, <span class="at">sep =</span> <span class="st">";"</span>)</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># alternativ: df &lt;- read.csv2() </span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># wir skalieren die Prädiktoren mit sclae(), um sie vergleichbar zu machen</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># as.numeric stellt sicher, dass die Variablen-Werte numerisch sind</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># mit str() lässts ich im Vorfeld überprüfen, wie die Variablen-Werte gespeichert sind</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>emotionality_z <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(<span class="fu">as.numeric</span>(data<span class="sc">$</span>emotionality)))</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>hostility_z <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(<span class="fu">as.numeric</span>(data<span class="sc">$</span>hostility)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># as.numeric stellt sicher, dass die Variablen-Werte numerisch sind</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># mit str() lässts ich im Vorfeld überprüfen, wie die Variablen-Werte gespeichert sind</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>emotionality_z <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(<span class="fu">as.numeric</span>(data<span class="sc">$</span>emotionality)))</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>hostility_z <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(<span class="fu">as.numeric</span>(data<span class="sc">$</span>hostility)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  Mediationsanalyse nach Barron &amp; Kenny</span></span>
@@ -585,6 +585,7 @@ Simulations: 5000 </code></pre>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ADE: Das ist der direkte Effekt; der Effekt von X auf Y unter Kontrolle des Einflusses von M</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Wir stellen fest: Der direkte Effek ACME ist signifikant. Es handelt sich also um einen Mediationseffekt.</p>
 
 
 </section>

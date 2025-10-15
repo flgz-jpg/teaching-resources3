@@ -1,0 +1,116 @@
+---
+title: "R Tutorial: Mediationsanalyse"
+---
+
+Dieses R Tutorial ist begleitend für die Input-Sitzung "Mediationsanalyse" des Masterkolloquiums Forenische Psychologie an der Univserisität Basek konzipiert worden. Den Datensatz zur Lösung der Aufgaben finden Teilnehmende des Masterkollquiums auf der Learning Platform ADAM.
+
+## Aufgabenstellung
+
+Im Folgenden wollen wir herausfinden, ob ein hostiler Attributionsstil dazu führt, dass emotional instabilere Eltern eher zu bestrafendes Erziehungsverhalten zeigen.
+
+::: {.callout-note  title="Überlegen Sie: Welches ist der Prädiktor? Was der Mediator?"}
+
+```{mermaid}
+graph LR
+    A[Emotionale Instabilität] -- Kein / Kleiner Effekt --> B[Bestrafung]
+    A -- Signifikanter Effekt --> C[Hostiler Attributionsstil]
+    C -- Signifikanter Effekt --> B[Bestrafung]
+```
+:::
+
+1.  Laden Sie folgende Packages
+
+```{r}
+library(flextable)
+library(jtools)
+library(dplyr)
+library(mediation)
+```
+
+
+2. Daten einlesen
+
+Lesen Sie den Datensatz data.csv ein, die Ihnen über ADAM zur Verfügung gestellt wurde.
+
+Dieser Datensatz enthält Daten zu Schemata und Erziehungsverhalten von Eltern.
+
+``` {r}
+# Daten einlesen
+
+data = read.csv2("data.csv", sep = ";")
+# alternativ: df <- read.csv2() 
+
+
+# as.numeric stellt sicher, dass die Variablen-Werte numerisch sind
+# mit str() lässts ich im Vorfeld überprüfen, wie die Variablen-Werte gespeichert sind
+
+data$emotionality_z <- as.numeric(scale(as.numeric(data$emotionality)))
+data$hostility_z <- as.numeric(scale(as.numeric(data$hostility)))
+```
+
+2.  Mediationsanalyse nach Barron und Kenny
+
+Kopieren Sie untenstehenden Code in ihr R Script, fügen Sie die Variablen punishment, emotionality_z und hostility_z an den entsprechenden Stellen im Code ein und lassen Sie sich den Output ausgeben. 
+
+
+``` r
+
+#  Mediationsanalyse nach Barron & Kenny
+# ----------------------------------------------------------
+
+library(jtools)
+
+#  Step 1: Gibt es einen direkten Hauptweffekt x -> y? (path c)
+
+path_c =lm( ~ , data = data)
+summ(path_c)$coef
+
+#  Step 2: Gibt es einen signifikanten Zusammenhang zwischen X und M? (path a)
+
+path_a =lm( ~ , data = data)
+summ(path_a)$coef
+
+#  Step 3: Gibt es gleichzeitig einen Zusammenhang zwischen X und Y, wenn man für X kontrolliert? (path b)
+#  Step 4: Verschwindet / verringert sich der Effekt zwischen X und Y, wenn man für M kontrolliert? (path c')
+
+path_b_cprime =lm(  ~  + , data = data)
+#summ(path_b_cprime)$coef
+
+# Visualize Summary
+
+export_summs(path_c, path_a, path_b_cprime)
+```
+
+::: {.callout-note collapse=true  title="Exkurs: Testung des Mediationseffekts"}
+
+Die Herangehensweise nach Barron und Kenny liefert Evidenz für oder gegen einen Mediationseffekt, jedoch keinen Test desselben. Eine Herangehensweise zur Testung des Mediationseffektes soll im Folgenden vorgestellt werden.
+
+```{r}
+
+#  Testung des Mediationseffekts (ab) mit Bootstrapped Intervals
+# -------------------------------------------------------------------------------------
+
+
+data3 = na.omit(data)
+
+med_model <- lm(hostility_z ~ emotionality_z, data = data3)
+out_model <- lm(punishment ~ hostility_z + emotionality_z, data = data3)
+
+
+mediate_test <- mediate(med_model, out_model,
+                        treat = "emotionality_z",
+                        mediator = "hostility_z",
+                        boot = TRUE, sims = 5000)
+
+summary(mediate_test)
+
+    # Interpretation
+
+# ACME: Das ist der indirekte Effekt (Average Causal Mediation Effect) — der Teil von X’s Effect auf Y, der durch den Mediator M vermittelt wird
+
+# ADE: Das ist der direkte Effekt; der Effekt von X auf Y unter Kontrolle des Einflusses von M
+
+```
+:::
+
+

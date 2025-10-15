@@ -123,13 +123,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <span class="nav-link">
-<span class="menu-text">Comments / Feedback</span>
-    </span>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="mailto:logozflora@gmail.com"> 
-<span class="menu-text">mailto:logozflora@gmail.com</span></a>
+<span class="menu-text">Comments / Feedback</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -172,6 +167,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Mediationsanalyse</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R_Tutorial_Mediation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R Tutorial: Mediationsanalyse</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -187,7 +188,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#daten-einlesen" id="toc-daten-einlesen" class="nav-link" data-scroll-target="#daten-einlesen">Daten einlesen</a></li>
   <li><a href="#daten-kennen-lernen" id="toc-daten-kennen-lernen" class="nav-link" data-scroll-target="#daten-kennen-lernen">Daten kennen lernen</a></li>
   <li><a href="#variablen-typen-in-r" id="toc-variablen-typen-in-r" class="nav-link" data-scroll-target="#variablen-typen-in-r">Variablen-Typen in R</a></li>
-  <li><a href="#daten-aufbereiten" id="toc-daten-aufbereiten" class="nav-link" data-scroll-target="#daten-aufbereiten">Daten aufbereiten</a></li>
+  <li><a href="#daten-bearbeiten" id="toc-daten-bearbeiten" class="nav-link" data-scroll-target="#daten-bearbeiten">Daten bearbeiten</a></li>
+  <li><a href="#subsets-erstellen" id="toc-subsets-erstellen" class="nav-link" data-scroll-target="#subsets-erstellen">Subsets erstellen</a></li>
+  <li><a href="#daten-verändern" id="toc-daten-verändern" class="nav-link" data-scroll-target="#daten-verändern">Daten verändern</a></li>
   </ul>
 </nav>
     </div>
@@ -244,10 +247,12 @@ Warning
 <section id="r-packages-und-befehle" class="level3">
 <h3 class="anchored" data-anchor-id="r-packages-und-befehle">R Packages und Befehle</h3>
 <p>R ist eine Open Source Software, für die jede:r Befehle entwickeln kann. Befehle, die nicht zur R Software selber gehören, sind in sogenannten <strong>packages</strong> abgelegt.</p>
-<p>Damit die Befehle eines Packages verwendet werden können, muss das entsprechende Package geladen werden (so lässt sich verhindern, dass sich die dezentral entwickelten Befehle unterschiedlicher Packages in die Quere kommen - bspw. weil sie ähnlich heissen oder anderweitig konfligieren).</p>
+<p>Damit die Befehle eines Packages verwendet werden können, muss das entsprechende Package geladen werden (so lässt sich im Umkehrschluss verhindern, dass sich die Befehle unterschiedlicher Packages in die Quere kommen - bspw. weil sie ähnlich heissen oder anderweitig konfligieren).</p>
 <p>Voraussetzung für das Laden eines Packages ist, dass es bereits installiert wurde.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"carData"</span>) <span class="co"># packes installieren</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(carData) <span class="co"># packages laden</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(carData) <span class="co"># package laden</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr, jtools) <span class="co"># mehrere packages gleichzeitig laden</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(carData, <span class="at">unload =</span> <span class="cn">TRUE</span>) <span class="co"># laden von packages rückgängig machen</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="daten-einlesen" class="level3">
 <h3 class="anchored" data-anchor-id="daten-einlesen">Daten einlesen</h3>
@@ -261,40 +266,90 @@ Warning
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>table_data <span class="ot">=</span> <span class="fu">read.delim2</span>()</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Komma-getrennte Werte (oder Werte, die durch Semicolons oder Abstände getrennt sind - eignet sich generell gut für Numbers-Datein auf Mac)</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>csv_data <span class="ot">=</span> <span class="fu">read.csv2</span>() <span class="co">#Beispiel: csv_data = read.csv2(file, sep = ";")</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>csv_data <span class="ot">=</span> <span class="fu">read.csv2</span>() <span class="co">#Beispiel: csv_data = read.csv2(file, sep = ";")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="daten-kennen-lernen" class="level3">
 <h3 class="anchored" data-anchor-id="daten-kennen-lernen">Daten kennen lernen</h3>
+<p>Um die folgenden Schritte zu illustrieren, verwenden wir den in R enthaltenen Datensatzes Cars93, der Daten zu 93 US-amerikanischen Autos aus dem Jahr 1993 enthält. Der Datensatz muss nicht eingelesen werden; R kann direkt auf ihn zugreifen.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Um sich einen groben Überblick zu verschaffen: </span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Den Datensatz anzeigen (in separatem Fenster)</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(Data)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(Cars93)</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Teile des Datensatzes anzeigen (in der Console)</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data) <span class="co"># zeigt die obersten Zeilen des Datensatzes "data" an</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(data) <span class="co"># zeigt die letzten Zeilen des Datensatzes "data" an</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Cars93) <span class="co"># zeigt die obersten Zeilen des Datensatzes "Cars93" an</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(Cars93) <span class="co"># zeigt die letzten Zeilen des Datensatzes "Cars93" an</span></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Die Werte im Datensatz verstehen</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data) <span class="co"># gibt die Struktur der Variablen des Datensatzes "data" an</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Cars93) <span class="co"># gibt die Struktur der Variablen des Datensatzes "Cars93" an</span></span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Die Grobstruktur des Datensatzes verstehen</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">is.data.frame</span>(data) <span class="co">#handelt es sich um einen Data Frame?</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">is.table</span>(data) <span class="co">#handelt es sich um eine Tabelle</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(data) <span class="co">#Anzahl Zeilen (meistens Beobachtungen / Subjects)</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(data) <span class="co">#Anzahl Spalten (meistens Variablen)</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(data<span class="sc">$</span>study_id) <span class="co">#Anzahl unterschiedlicher Study Id's, sofern diese unter "study_id" aufgeführt sind</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">is.data.frame</span>(Cars93) <span class="co">#handelt es sich um einen Cars93 Frame?</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">is.table</span>(Cars93) <span class="co">#handelt es sich um eine Tabelle</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(Cars93) <span class="co">#Anzahl Zeilen (meistens Beobachtungen / Subjects)</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(Cars93) <span class="co">#Anzahl Spalten (meistens Variablen)</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(Cars93<span class="sc">$</span>study_id) <span class="co">#Anzahl unterschiedlicher Study Id's, sofern diese unter "study_id" aufgeführt sind</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="variablen-typen-in-r" class="level3">
 <h3 class="anchored" data-anchor-id="variablen-typen-in-r">Variablen-Typen in R</h3>
-<p>Anhand des in R integrierten Datensatzes Cars93 aus dem Jahr 1993 der Daten zu 93 Autos enthält, lassen sich unterschiedliche Variablen-Typen in R illustrieren. Der Datensatz muss nicht eingelesen werden; R kann direkt auf ihn zugreifen.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Cars93) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+<ul>
+<li><strong>Logical</strong>: Logicals sind boolsche Variablen, d.h., sie können die Werte TRUE oder FALSE annehmen.</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">=</span> <span class="cn">TRUE</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.logical</span>(b) <span class="co"># anhand is.logical() lässt sich herausfinden, ob eine Variable ein logical ist</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>Factor</strong>: Faktors sind ordinal skalierte Werte; sie sind kategorial, haben keine interpretierbaren Abstände, können aber hierarchische Beziehungen abbilden. Zulässige Operationen sind: gleich, ungleich, grösser und kleiner als. Mit str() lässt sich herausfinden, wieviele Abstufungen ein Factor hat.</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Cars93<span class="sc">$</span>Origin) <span class="co"># str() gibt den Variablen-Typ aus. </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.factor</span>(Cars93<span class="sc">$</span>Origin) <span class="co"># Alternativ kann mit is.factor spezifisch danach gefragt werden, ob es sich um einen Faktor handelt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>Integer</strong>: Integer sind Variablen, die Ereignisse anhand positiver oder negativer ganzer Zahlen kodieren. Das bedeutet, dass sie keine Nachkommastellen haben. Das kann zu Schwierigkeiten bei Berechnungen führen. In diesem Fall sollten sie in numerische Werte umgewandelt werden.</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.integer</span>(Cars93<span class="sc">$</span>RPM) </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Cars93<span class="sc">$</span>RPM <span class="ot">=</span> <span class="fu">as.numeric</span>(Cars93<span class="sc">$</span>RPM) <span class="co"># Wandelt einen Integer in eine numerische Variable um </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>Numeric</strong>: Numerische Variablen kodieren Ereignisse anhand reeller Zahlen. Das bedeutet, dass sie alle Punkte auf einem Zahlenstrahl abbilden und beliebigen Transformationen (Berechnungen) unterzogen werden können.</li>
+</ul>
+<p>(Für diejenigen, die es genau wissen wollen: Intern sind numerische Werte mit <em>x = (-1)^s * m * b^e</em> abgespeichert (d.h. als Gleitkommazahl).</p>
+<ul>
+<li><strong>Character</strong>: Character sind Zeichenketten, auch <em>strings</em> genannt, deren Elemente in Anführungsstrichen gespeichert werden.</li>
+</ul>
 </section>
-<section id="daten-aufbereiten" class="level3">
-<h3 class="anchored" data-anchor-id="daten-aufbereiten">Daten aufbereiten</h3>
+<section id="daten-bearbeiten" class="level3">
+<h3 class="anchored" data-anchor-id="daten-bearbeiten">Daten bearbeiten</h3>
+<div class="callout callout-style-default callout-warning callout-titled" title="Der Erste Bearbeitungsschritt">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Der Erste Bearbeitungsschritt
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Nach dem Einlesen und Kennenlernen der Daten sollte der erste Bearbeitungsschritt immer das Erstellen einer Kopie der Daten sein. So muss der Datensatz nicht immer wieder neu eingelesen werden, falls bei einem Bearbeitungsschritt etwas schief geht.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">=</span> df_org <span class="co"># Ein neues Objekt namens "df1" erstellen, in das die Inhalte von df_org abgelegt werden</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># In diesem Fall ist df1 eine exakte Kopie von df_org. df_org bleibt dabei unverändert.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>Df steht hier für data frame, welches das übliche Format für Datensätze in R ist und von den meisten Befehlgruppen zur Datenbearbeitung genutzt wird.</p>
+<p>Folglich ist eine häufige Quelle für Fehlermeldungen, das Datensätze noch nicht in die data frame Struktur gespeichert sind.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.data.frame</span>(df1) <span class="co"># prüfen, ob es sich bei df1 um einen data frame handelt</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(df1) <span class="co"># df1 in einen data frame umwandeln</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">=</span> <span class="fu">as.data.frame</span>(df2) <span class="co"># ein neues Objekt erstellen, in das die Inhalte von df1 in der data frame Struktur abgelehgt werden</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="subsets-erstellen" class="level3">
+<h3 class="anchored" data-anchor-id="subsets-erstellen">Subsets erstellen</h3>
+<p>Subsets oder Subsamples werden immer dann erstellt, wenn nur ein Teil des Datensatzes bearbeitet werden soll oder wenn Teile des Datensatzes getrennt betrachtet werden sollen. Das ist u.a. dann der Fall, wenn mit Teilstichproben gearbeitet wird. Manchmal verlangt auch die Struktur der Daten, dass der Datensatz aufgeteilt und nach der Bearbeitung wieder zusammen gesetzt wird.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Eine Teilstichprobe erstellen</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="daten-verändern" class="level3">
+<h3 class="anchored" data-anchor-id="daten-verändern">Daten verändern</h3>
+<p><em>in progress … </em></p>
 
 
 </section>
