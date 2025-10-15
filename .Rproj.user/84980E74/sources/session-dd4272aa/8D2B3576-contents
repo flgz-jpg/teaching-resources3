@@ -2,7 +2,7 @@
 title: "R Tutorial: Mediationsanalyse"
 ---
 
-Dieses R Tutorial ist begleitend für die Input-Sitzung "Mediationsanalyse" des Masterkolloquiums Forenische Psychologie an der Univserisität Basek konzipiert worden. Den Datensatz zur Lösung der Aufgaben finden Teilnehmende des Masterkollquiums auf der Learning Platform ADAM.
+Dieses R Tutorial ist begleitend für die Input-Sitzung "Mediationsanalyse" des Masterkolloquiums Forenische Psychologie an der Univserisität Basel erstellt worden. Den Datensatz zur Lösung der Aufgaben finden Teilnehmende des Masterkollquiums auf der Learning Platform ADAM.
 
 ## Aufgabenstellung
 
@@ -30,7 +30,7 @@ library(mediation)
 
 2. Daten einlesen
 
-Lesen Sie den Datensatz data.csv ein, die Ihnen über ADAM zur Verfügung gestellt wurde.
+Lesen Sie den Datensatz data.csv ein, der Ihnen über ADAM zur Verfügung gestellt wurde.
 
 Dieser Datensatz enthält Daten zu Schemata und Erziehungsverhalten von Eltern.
 

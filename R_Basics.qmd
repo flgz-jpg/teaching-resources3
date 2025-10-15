@@ -146,11 +146,16 @@ Subsets oder Subsamples werden immer dann erstellt, wenn nur ein Teil des Datens
 
 ```
 
-### Daten verändern
+### Neue Variablen erstellen
 
 ```{r}
 
 ```
 
+### Variablen umkodieren
+
+```{r}
+
+```
 
 *in progress ... *
