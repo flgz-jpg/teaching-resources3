@@ -12,9 +12,9 @@ Im Folgenden wollen wir herausfinden, ob ein hostiler Attributionsstil dazu füh
 
 ```{mermaid}
 graph LR
-    A[Emotionale Instabilität] -- Kein / Kleiner Effekt --> B[Bestrafung]
-    A -- Signifikanter Effekt --> C[Hostiler Attributionsstil]
-    C -- Signifikanter Effekt --> B[Bestrafung]
+    A[Prädiktor] -- Kein / Kleiner Effekt --> B[Outcome]
+    A -- Signifikanter Effekt --> C[Mediator]
+    C -- Signifikanter Effekt --> B[Outcome]
 ```
 :::
 
