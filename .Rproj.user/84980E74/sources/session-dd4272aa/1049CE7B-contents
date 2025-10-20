@@ -139,23 +139,91 @@ df2 = as.data.frame(df2) # ein neues Objekt erstellen, in das die Inhalte von df
 
 Subsets oder Subsamples werden immer dann erstellt, wenn nur ein Teil des Datensatzes bearbeitet werden soll oder wenn Teile des Datensatzes getrennt betrachtet werden sollen. Das ist u.a. dann der Fall, wenn mit Teilstichproben gearbeitet wird. Manchmal verlangt auch die Struktur der Daten, dass der Datensatz aufgeteilt und nach der Bearbeitung wieder zusammen gesetzt wird.
 
+Wir erstellen dazu einen fiktiven Datensatz
+
+```{r}
+set.seed(123)
+n <- 200
+df <- data.frame(
+  id = 1:n,
+  age = sample(18:90, n, replace = TRUE),
+  sex = sample(c("M", "F", "X"), n, replace = TRUE),
+  income = round(rlnorm(n, meanlog = 10, sdlog = 0.6)), 
+  relationship_status = sample(c("single", "monogamous relationship", "polyamorous relationshio", "divorced / widowed",  NA), n, replace = TRUE, prob = c(0.45,0.35,0.12,0.05,0.03)),
+  score = rnorm(n, 100, 15),
+  date_joined = sample(seq(as.Date("2018-01-01"), as.Date("2024-12-31"), by = "day"), n, replace = TRUE),
+  stringsAsFactors = FALSE
+)
+# wir fügen ein paar Missings hinzu
+df$income[sample(1:n, 10)] <- NA
+df$score[sample(1:n, 8)] <- NA
+```
+
+
 ``` r
 # Eine Teilstichprobe erstellen
 
+## Nach Eigenschaften filtern
+junge_erwachsene <- df[df$age >= 18 & df$age <= 35, ] # Teilstichprobe mit Personen zwischen 18 und 35
+recent_members <- df %>% filter(date_joined >= as.Date("2023-01-01")) # Teilstichprobe anhand des Teilnahmezeitpunkts
 
+library(dplyr)
+young_adults_dplyr <- df %>% filter(age >= 18, age <= 35)
+
+## Eine Teilstichprobe mit interessierenden Variablen
+library(data.table)
+DT <- as.data.table(df) 
+DT_subset <- DT[age >= 30 & sex == "F", .(id, age, sex, income)] # Study Id, Alter, Geschlecht und Einkommen von Frauen über 30
+
+## Zufallsauswahl
+
+sample_idx <- sample(seq_len(nrow(df)), size = 30) # erstelle ein Objekt, welches eine Zufallsauswahl der Beobachtungen in df enthält
+df_simple_sample <- df[sample_idx,] # filtere diese Zufallsauswahl aus df heraus und lege sie in ein neues Objekt ab
+
+library(dplyr)
+df_sample_n <- df %>% sample_n(30) # wähle mit dplyr 30 zufällige Beobachtungen und lege sie in ein neues Objekt ab
+df_sample_frac <- df %>% sample_frac(0.10)  # filtere mit dplyr zufällig eine Fraktion (hier 10%) aus df und lege sie in ein neues Objekt ab
+ 
+## Stratifizierte Stichprobe
+
+stratified <- df %>% group_by(sex) %>% slice_sample(n = 5) %>% ungroup() # Teilstichprobe mit je 5 Personen pro Geschlecht
+stratified_frac <- df %>% group_by(sex) %>% slice_sample(prop = 0.1) %>% ungroup() # Teilstichprobe aus je 10% der Personen jeden Geschlechts
 
 ```
 
-### Neue Variablen erstellen
+### Variablen erstellen und umkodieren
 
-```{r}
+```r
+# Wenn, dann
+df$income_level = ifelse(df$income >= 26677, "high", "low") # wenn income  >= 26677, ist es "high", ansonsten ist es "low"
 
-```
+# Kategorien basierend auf mehreren Bedingungen
+df$income_level2 = ifelse(!is.na(df$income) & df$income >= 26677 , "high", ifelse(!is.na(df$income) & df$income < 26677, "low", "NA"))
 
-### Variablen umkodieren
+# Werte in Kategorien unterteilen
+df$age_group = cut(df$age, breaks = c(0, 25, 35, 50, 65, Inf), # Teile die Werte für "age" in unterschiedliche Intervalle
+                    labels = c("<=25","26-35","36-50","51-65","66+"), right = TRUE) # füge den Intervallen labels hinzu
 
-```{r}
+# Dummay-Variablen erstellen
 
+dummies <- model.matrix(~ sex - 1, data = df) # erstelle eine Dummy-Matrix aus den Werten für Sex
+df_dummies <- cbind(df, dummies) # füge die Matrix dem originalen Datensatz hinzu
+
+# recode()
+sex_recoded = recode(df$sex, "M" = "male", "F" = "female", "X" = "diverse", .default = NA_character_)
+
+# mutate() mit case_when()
+df3 <- df %>%
+  mutate( # verändere die Variablen-Werte
+    income_band = case_when(
+      is.na(income) ~ "Missing", # wenn income NA, dann ersetze mit "Missing"
+      income < 30000 ~ "<30k", 
+      income >= 30000 & income < 70000 ~ "30-70k", # wenn income zwischen 30000 und 70000 liegt, dann ersetze mit "30-70k"
+      income >= 70000 & income < 150000 ~ "70-150k",
+      income >= 150000 ~ "150k+"
+    )
+  )
+  
 ```
 
 *in progress ... *

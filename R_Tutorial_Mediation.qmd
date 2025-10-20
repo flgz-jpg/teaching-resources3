@@ -21,7 +21,6 @@ graph LR
 1.  Laden Sie folgende Packages
 
 ```{r message=FALSE}
-library(flextable)
 library(jtools)
 library(dplyr)
 library(mediation)

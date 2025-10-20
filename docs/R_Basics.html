@@ -190,8 +190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#variablen-typen-in-r" id="toc-variablen-typen-in-r" class="nav-link" data-scroll-target="#variablen-typen-in-r">Variablen-Typen in R</a></li>
   <li><a href="#daten-bearbeiten" id="toc-daten-bearbeiten" class="nav-link" data-scroll-target="#daten-bearbeiten">Daten bearbeiten</a></li>
   <li><a href="#subsets-erstellen" id="toc-subsets-erstellen" class="nav-link" data-scroll-target="#subsets-erstellen">Subsets erstellen</a></li>
-  <li><a href="#neue-variablen-erstellen" id="toc-neue-variablen-erstellen" class="nav-link" data-scroll-target="#neue-variablen-erstellen">Neue Variablen erstellen</a></li>
-  <li><a href="#variablen-umkodieren" id="toc-variablen-umkodieren" class="nav-link" data-scroll-target="#variablen-umkodieren">Variablen umkodieren</a></li>
+  <li><a href="#variablen-erstellen-und-umkodieren" id="toc-variablen-erstellen-und-umkodieren" class="nav-link" data-scroll-target="#variablen-erstellen-und-umkodieren">Variablen erstellen und umkodieren</a></li>
   </ul>
 </nav>
     </div>
@@ -344,15 +343,84 @@ Der Erste Bearbeitungsschritt
 <section id="subsets-erstellen" class="level3">
 <h3 class="anchored" data-anchor-id="subsets-erstellen">Subsets erstellen</h3>
 <p>Subsets oder Subsamples werden immer dann erstellt, wenn nur ein Teil des Datensatzes bearbeitet werden soll oder wenn Teile des Datensatzes getrennt betrachtet werden sollen. Das ist u.a. dann der Fall, wenn mit Teilstichproben gearbeitet wird. Manchmal verlangt auch die Struktur der Daten, dass der Datensatz aufgeteilt und nach der Bearbeitung wieder zusammen gesetzt wird.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Eine Teilstichprobe erstellen</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Wir erstellen dazu einen fiktiven Datensatz</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span>n,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">sample</span>(<span class="dv">18</span><span class="sc">:</span><span class="dv">90</span>, n, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"X"</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">income =</span> <span class="fu">round</span>(<span class="fu">rlnorm</span>(n, <span class="at">meanlog =</span> <span class="dv">10</span>, <span class="at">sdlog =</span> <span class="fl">0.6</span>)), </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">relationship_status =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"single"</span>, <span class="st">"monogamous relationship"</span>, <span class="st">"polyamorous relationshio"</span>, <span class="st">"divorced / widowed"</span>,  <span class="cn">NA</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.45</span>,<span class="fl">0.35</span>,<span class="fl">0.12</span>,<span class="fl">0.05</span>,<span class="fl">0.03</span>)),</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">score =</span> <span class="fu">rnorm</span>(n, <span class="dv">100</span>, <span class="dv">15</span>),</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_joined =</span> <span class="fu">sample</span>(<span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">"2018-01-01"</span>), <span class="fu">as.Date</span>(<span class="st">"2024-12-31"</span>), <span class="at">by =</span> <span class="st">"day"</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># wir fügen ein paar Missings hinzu</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>income[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, <span class="dv">10</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>score[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, <span class="dv">8</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Eine Teilstichprobe erstellen</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Nach Eigenschaften filtern</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>junge_erwachsene <span class="ot">&lt;-</span> df[df<span class="sc">$</span>age <span class="sc">&gt;=</span> <span class="dv">18</span> <span class="sc">&amp;</span> df<span class="sc">$</span>age <span class="sc">&lt;=</span> <span class="dv">35</span>, ] <span class="co"># Teilstichprobe mit Personen zwischen 18 und 35</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>recent_members <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(date_joined <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"2023-01-01"</span>)) <span class="co"># Teilstichprobe anhand des Teilnahmezeitpunkts</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>young_adults_dplyr <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(age <span class="sc">&gt;=</span> <span class="dv">18</span>, age <span class="sc">&lt;=</span> <span class="dv">35</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Eine Teilstichprobe mit interessierenden Variablen</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>DT <span class="ot">&lt;-</span> <span class="fu">as.data.table</span>(df) </span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>DT_subset <span class="ot">&lt;-</span> DT[age <span class="sc">&gt;=</span> <span class="dv">30</span> <span class="sc">&amp;</span> sex <span class="sc">==</span> <span class="st">"F"</span>, .(id, age, sex, income)] <span class="co"># Study Id, Alter, Geschlecht und Einkommen von Frauen über 30</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Zufallsauswahl</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>sample_idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq_len</span>(<span class="fu">nrow</span>(df)), <span class="at">size =</span> <span class="dv">30</span>) <span class="co"># erstelle ein Objekt, welches eine Zufallsauswahl der Beobachtungen in df enthält</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>df_simple_sample <span class="ot">&lt;-</span> df[sample_idx,] <span class="co"># filtere diese Zufallsauswahl aus df heraus und lege sie in ein neues Objekt ab</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>df_sample_n <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">sample_n</span>(<span class="dv">30</span>) <span class="co"># wähle mit dplyr 30 zufällige Beobachtungen und lege sie in ein neues Objekt ab</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>df_sample_frac <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">sample_frac</span>(<span class="fl">0.10</span>)  <span class="co"># filtere mit dplyr zufällig eine Fraktion (hier 10%) aus df und lege sie in ein neues Objekt ab</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="do">## Stratifizierte Stichprobe</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>stratified <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span> <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>() <span class="co"># Teilstichprobe mit je 5 Personen pro Geschlecht</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>stratified_frac <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span> <span class="fu">slice_sample</span>(<span class="at">prop =</span> <span class="fl">0.1</span>) <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>() <span class="co"># Teilstichprobe aus je 10% der Personen jeden Geschlechts</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="neue-variablen-erstellen" class="level3">
-<h3 class="anchored" data-anchor-id="neue-variablen-erstellen">Neue Variablen erstellen</h3>
-</section>
-<section id="variablen-umkodieren" class="level3">
-<h3 class="anchored" data-anchor-id="variablen-umkodieren">Variablen umkodieren</h3>
+<section id="variablen-erstellen-und-umkodieren" class="level3">
+<h3 class="anchored" data-anchor-id="variablen-erstellen-und-umkodieren">Variablen erstellen und umkodieren</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wenn, dann</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>income_level <span class="ot">=</span> <span class="fu">ifelse</span>(df<span class="sc">$</span>income <span class="sc">&gt;=</span> <span class="dv">26677</span>, <span class="st">"high"</span>, <span class="st">"low"</span>) <span class="co"># wenn income  &gt;= 26677, ist es "high", ansonsten ist es "low"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Kategorien basierend auf mehreren Bedingungen</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>income_level2 <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(df<span class="sc">$</span>income) <span class="sc">&amp;</span> df<span class="sc">$</span>income <span class="sc">&gt;=</span> <span class="dv">26677</span> , <span class="st">"high"</span>, <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(df<span class="sc">$</span>income) <span class="sc">&amp;</span> df<span class="sc">$</span>income <span class="sc">&lt;</span> <span class="dv">26677</span>, <span class="st">"low"</span>, <span class="st">"NA"</span>))</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Werte in Kategorien unterteilen</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>age_group <span class="ot">=</span> <span class="fu">cut</span>(df<span class="sc">$</span>age, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">25</span>, <span class="dv">35</span>, <span class="dv">50</span>, <span class="dv">65</span>, <span class="cn">Inf</span>), <span class="co"># Teile die Werte für "age" in unterschiedliche Intervalle</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"&lt;=25"</span>,<span class="st">"26-35"</span>,<span class="st">"36-50"</span>,<span class="st">"51-65"</span>,<span class="st">"66+"</span>), <span class="at">right =</span> <span class="cn">TRUE</span>) <span class="co"># füge den Intervallen labels hinzu</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Dummay-Variablen erstellen</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>dummies <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span> sex <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span> df) <span class="co"># erstelle eine Dummy-Matrix aus den Werten für Sex</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>df_dummies <span class="ot">&lt;-</span> <span class="fu">cbind</span>(df, dummies) <span class="co"># füge die Matrix dem originalen Datensatz hinzu</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co"># recode()</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>sex_recoded <span class="ot">=</span> <span class="fu">recode</span>(df<span class="sc">$</span>sex, <span class="st">"M"</span> <span class="ot">=</span> <span class="st">"male"</span>, <span class="st">"F"</span> <span class="ot">=</span> <span class="st">"female"</span>, <span class="st">"X"</span> <span class="ot">=</span> <span class="st">"diverse"</span>, <span class="at">.default =</span> <span class="cn">NA_character_</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="co"># mutate() mit case_when()</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="co"># verändere die Variablen-Werte</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">income_band =</span> <span class="fu">case_when</span>(</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">is.na</span>(income) <span class="sc">~</span> <span class="st">"Missing"</span>, <span class="co"># wenn income NA, dann ersetze mit "Missing"</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>      income <span class="sc">&lt;</span> <span class="dv">30000</span> <span class="sc">~</span> <span class="st">"&lt;30k"</span>, </span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>      income <span class="sc">&gt;=</span> <span class="dv">30000</span> <span class="sc">&amp;</span> income <span class="sc">&lt;</span> <span class="dv">70000</span> <span class="sc">~</span> <span class="st">"30-70k"</span>, <span class="co"># wenn income zwischen 30000 und 70000 liegt, dann ersetze mit "30-70k"</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>      income <span class="sc">&gt;=</span> <span class="dv">70000</span> <span class="sc">&amp;</span> income <span class="sc">&lt;</span> <span class="dv">150000</span> <span class="sc">~</span> <span class="st">"70-150k"</span>,</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>      income <span class="sc">&gt;=</span> <span class="dv">150000</span> <span class="sc">~</span> <span class="st">"150k+"</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>in progress … </em></p>
 
 
