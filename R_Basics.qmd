@@ -139,7 +139,7 @@ df2 = as.data.frame(df2) # ein neues Objekt erstellen, in das die Inhalte von df
 
 Subsets oder Subsamples werden immer dann erstellt, wenn nur ein Teil des Datensatzes bearbeitet werden soll oder wenn Teile des Datensatzes getrennt betrachtet werden sollen. Das ist u.a. dann der Fall, wenn mit Teilstichproben gearbeitet wird. Manchmal verlangt auch die Struktur der Daten, dass der Datensatz aufgeteilt und nach der Bearbeitung wieder zusammen gesetzt wird.
 
-Wir erstellen dazu einen fiktiven Datensatz
+Wir erstellen einen fiktiven Datensatz, um die folgenden Operationen anwenden zu können
 
 ```{r}
 set.seed(123)
@@ -149,7 +149,7 @@ df <- data.frame(
   age = sample(18:90, n, replace = TRUE),
   sex = sample(c("M", "F", "X"), n, replace = TRUE),
   income = round(rlnorm(n, meanlog = 10, sdlog = 0.6)), 
-  relationship_status = sample(c("single", "monogamous relationship", "polyamorous relationshio", "divorced / widowed",  NA), n, replace = TRUE, prob = c(0.45,0.35,0.12,0.05,0.03)),
+  relationship_status = sample(c("single", "monogamous relationship", "polyamorous relationship", "divorced / widowed",  NA), n, replace = TRUE, prob = c(0.45,0.35,0.12,0.05,0.03)),
   score = rnorm(n, 100, 15),
   date_joined = sample(seq(as.Date("2018-01-01"), as.Date("2024-12-31"), by = "day"), n, replace = TRUE),
   stringsAsFactors = FALSE
