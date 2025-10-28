@@ -1,0 +1,71 @@
+---
+title: "Conducting a Systematic Literature Review"
+---
+
+### What is a Systematic Literature Review?
+
+**Def.:** A Systematic Litertaure Review is a transparent, structured summary of existing research to answer a specific, falsifiable research question. It is a secondary research method, collecting findings from primary research to assess what conclusions can be derived from the current state of research. As with a meta-analysis, clear inclusion and exclusion criteria are defined for this purpose. While the studies included in a meta-analysis are statistically summarised, in a systematic literature review the collected findings are merely collected and interpreted.
+
+Unlike a narrative literature review, it does not summarise the state of the art in a field of research, but rather uses it to answer a specific research question.
+
+*Note*: A Systematic Literature Review is not the same as a Systematic Review. The first focusses on scientific literature whereas the latter is wider in scope and includes all sorts of databases, such as archive data, offical statistics, etc.
+
+| Type of Research Synthesis | Narrative / Literature Review | Systematic Literature Review | Meta-Analysis |
+|------------------|------------------|------------------|------------------|
+| Type of Research | Secondary; based on existing research | Secondary; based on existing research | Secondary; based on existing research |
+| Aim | Summarizing the State of the Art of a given research area, describe knowledge basis, tensions, and gaps. | Answer a specific research question | Answer a specific research question |
+| Outcome | Narrative literature synthesis | Narrative literature synthesis | Statistical summary of effect sizes |
+
+### How to Conduct a Systematic Literature Review?
+
+## 1. Define a Research Question
+
+Start by defining a concrete, answerable research question. There are different **frameworks** for defining a research question. They differ depending on your are of study.
+
+[PICO](https://libguides.ntu.edu.sg/c.php?g=936042&p=6768649){.external target="_blank"} is the most common framework for clinical research.
+
+| P | I | C | O |
+|------------------|------------------|------------------|------------------|
+| Patient / Population / Problem | Intervention | Comparison (e.g., placebo control group, gold standard) | Outcome |
+
+Example: Do depressed men (population) who receive gender-specific intervention in addition to classic behavioral therapy (intervention) show a greater reduction in symptoms (ourcome) than depressed men who receive ‘only’ classic behavioural therapy (comparison)?
+
+## 2. Formulate Inclusion and Exclusion Criteria
+
+Guidelines for formulating a research question, such as the PICO framework, can also help to formulate inclusion and exclusion criteria.
+
+For example, if you want to study a population of depressed men, you can exclude all studies that did not examine adult men with depression (e.g., studies with under-age or female-only samples). Furthermore, studies that did not examine a gender-specific add-on to classic CBT can also be excluded (e.g., studies that only investigated a gender-specific intervention, without CBT).
+
+## 3. Define Search Terms
+
+- Use your research question to extract **key words** than can be used as search terms (e.g., "depressed men", "CBT/cognitive behavioural therapy", "symptom reduction", "gender-specific", "gender")
+
+- Identify relevant synonyms or categories for these keywords (e.g., for "depression", these would be "major depression", "major depressive disorder", and "depressive episode")
+
+- Now, based on the framework you used to formulate your research question, ask yourself which combinations of search terms would allow a search that is broad enough to identify all relevant research but still so precise that you avoid unnecessary findings?
+
+- avoid words that don't hold much meaning, such as "and", "or" - these bring the risk of "polluting" your results because of their frequent yet unspecific occurence
+
+## 4. Choose a Search Strategy
+
+# Where to search
+
+In order to conduct an exhaustive search that allows to collect all relevant literature, you'll have to search in multiple databases.
+
+Identify academic databases that are relevant to your topic. These databases are typically well-indexed—that is, articles are classified and tagged with terms that reflect their main focus or subject, making it easier to locate relevant materials. Search engines such as Google or Google Scholar are not ideal for conducting systematic searches, as their indexing methods and limited search features make it difficult to perform comprehensive or structured searches.
+
+A selection of academic databases for psychological research can be found [here](https://guides.lib.sussex.ac.uk/c.php?g=681872&p=4866601){.external target="_blank"}.
+
+# How to search
+
+**Boolean Search Operators**: In many databases, "AND", "OR", "NOT" operaters can be used to fine-tune your search. If used between keywords, the search enginge will look for occurences that include both (e.g., "gender AND psychotherapy"), either one (e.g., "depression OR major depressive disorder"), or one without the other (e.g., "psychotherapy NOT psychoanalytic"). 
+
+**Truncation Search Operator**: If a word base is complemented with an ansterik instead of an ending, the search engine will look for different endings of that word. (e.g., "depress*" will allow for results such as "major depression", "depressive disorder", "depressed men")
+
+**Wildcard Operator**: Combining a keyword with a question mark signals to the search engine that the word can be spelled differently and will allow for different spelling in the results (e.g., "Cognitive Behavioral? Therapy" will include results such as "Cognitive Behavioural Therapy" )
+
+**Advanced Searches**: 
+
+
+## 5. 
+

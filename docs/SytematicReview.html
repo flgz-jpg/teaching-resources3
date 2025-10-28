@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R Tutorial: Mediationsanalyse – Resources for Students</title>
+<title>Conducting a Systematic Literature Review – Resources for Students</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -100,9 +66,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -140,7 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./R_Tutorial_Mediation.html">R Tutorial: Mediationsanalyse</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Conducting a Systematic Literature Review</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -172,7 +135,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./R_Tutorial_Mediation.html" class="sidebar-item-text sidebar-link active">
+  <a href="./R_Tutorial_Mediation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">R Tutorial: Mediationsanalyse</span></a>
   </div>
 </li>
@@ -186,7 +149,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#aufgabenstellung" id="toc-aufgabenstellung" class="nav-link active" data-scroll-target="#aufgabenstellung">Aufgabenstellung</a></li>
+  <li><a href="#what-is-a-systematic-literature-review" id="toc-what-is-a-systematic-literature-review" class="nav-link active" data-scroll-target="#what-is-a-systematic-literature-review">What is a Systematic Literature Review?</a></li>
+  <li><a href="#how-to-conduct-a-systematic-literature-review" id="toc-how-to-conduct-a-systematic-literature-review" class="nav-link" data-scroll-target="#how-to-conduct-a-systematic-literature-review">How to Conduct a Systematic Literature Review?</a></li>
+  <li><a href="#define-a-research-question" id="toc-define-a-research-question" class="nav-link" data-scroll-target="#define-a-research-question">1. Define a Research Question</a></li>
+  <li><a href="#formulate-inclusion-and-exclusion-criteria" id="toc-formulate-inclusion-and-exclusion-criteria" class="nav-link" data-scroll-target="#formulate-inclusion-and-exclusion-criteria">2. Formulate Inclusion and Exclusion Criteria</a></li>
+  <li><a href="#define-search-terms" id="toc-define-search-terms" class="nav-link" data-scroll-target="#define-search-terms">3. Define Search Terms</a></li>
+  <li><a href="#choose-a-search-strategy" id="toc-choose-a-search-strategy" class="nav-link" data-scroll-target="#choose-a-search-strategy">4. Choose a Search Strategy</a></li>
+  <li><a href="#where-to-search" id="toc-where-to-search" class="nav-link" data-scroll-target="#where-to-search">Where to search</a></li>
+  <li><a href="#how-to-search" id="toc-how-to-search" class="nav-link" data-scroll-target="#how-to-search">How to search</a>
+  <ul class="collapse">
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section">5.</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -195,7 +168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">R Tutorial: Mediationsanalyse</h1>
+<h1 class="title">Conducting a Systematic Literature Review</h1>
 </div>
 
 
@@ -212,154 +185,115 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Dieses R Tutorial ist begleitend für die Input-Sitzung “Mediationsanalyse” des Masterkolloquiums Forenische Psychologie an der Univserisität Basel erstellt worden. Den Datensatz zur Lösung der Aufgaben finden Teilnehmende des Masterkollquiums auf der Learning Platform ADAM.</p>
-<section id="aufgabenstellung" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabenstellung">Aufgabenstellung</h2>
-<p>Im Folgenden wollen wir herausfinden, ob ein hostiler Attributionsstil dazu führt, dass emotional instabilere Eltern eher zu bestrafendes Erziehungsverhalten zeigen.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Überlegen Sie: Welches ist der Prädiktor? Was der Mediator?">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Überlegen Sie: Welches ist der Prädiktor? Was der Mediator?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph LR
-    A[Prädiktor] -- Kein / Kleiner Effekt --&gt; B[Outcome]
-    A -- Signifikanter Effekt --&gt; C[Mediator]
-    C -- Signifikanter Effekt --&gt; B[Outcome]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<ol type="1">
-<li>Laden Sie folgende Packages</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jtools)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mediation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="2" type="1">
-<li>Daten einlesen</li>
-</ol>
-<p>Lesen Sie den Datensatz data.csv ein, der Ihnen über ADAM zur Verfügung gestellt wurde.</p>
-<p>Dieser Datensatz enthält Daten zu Schemata und Erziehungsverhalten von Eltern.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Daten einlesen</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">read.csv2</span>(<span class="st">"data.csv"</span>, <span class="at">sep =</span> <span class="st">";"</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># alternativ: df &lt;- read.csv2() </span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># as.numeric stellt sicher, dass die Variablen-Werte numerisch sind</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># mit str() lässts ich im Vorfeld überprüfen, wie die Variablen-Werte gespeichert sind</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>emotionality_z <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(<span class="fu">as.numeric</span>(data<span class="sc">$</span>emotionality)))</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>hostility_z <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(<span class="fu">as.numeric</span>(data<span class="sc">$</span>hostility)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="2" type="1">
-<li>Mediationsanalyse nach Baron und Kenny</li>
-</ol>
-<p>Kopieren Sie untenstehenden Code in ihr R Script, fügen Sie die Variablen punishment, emotionality_z und hostility_z an den entsprechenden Stellen im Code ein und lassen Sie sich den Output ausgeben.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#  Mediationsanalyse nach Baron &amp; Kenny</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jtools)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#  Step 1: Gibt es einen direkten Hauptweffekt x -&gt; y? (path c)</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>path_c <span class="ot">=</span><span class="fu">lm</span>( <span class="sc">~</span> , <span class="at">data =</span> data)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summ</span>(path_c)<span class="sc">$</span>coef</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#  Step 2: Gibt es einen signifikanten Zusammenhang zwischen X und M? (path a)</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>path_a <span class="ot">=</span><span class="fu">lm</span>( <span class="sc">~</span> , <span class="at">data =</span> data)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="fu">summ</span>(path_a)<span class="sc">$</span>coef</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">#  Step 3: Gibt es gleichzeitig einen Zusammenhang zwischen X und Y, wenn man für X kontrolliert? (path b)</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">#  Step 4: Verschwindet / verringert sich der Effekt zwischen X und Y, wenn man für M kontrolliert? (path c')</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>path_b_cprime <span class="ot">=</span><span class="fu">lm</span>(  <span class="sc">~</span>  <span class="sc">+</span> , <span class="at">data =</span> data)</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">#summ(path_b_cprime)$coef</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize Summary</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="fu">export_summs</span>(path_c, path_a, path_b_cprime)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exkurs: Testung des Mediationseffekts">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Exkurs: Testung des Mediationseffekts
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Die Herangehensweise nach Baron und Kenny liefert Evidenz für oder gegen einen Mediationseffekt, jedoch keinen Test desselben. Eine Herangehensweise zur Testung des Mediationseffektes soll im Folgenden vorgestellt werden.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  Testung des Mediationseffekts (ab) mit Bootstrapped Intervals</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># -------------------------------------------------------------------------------------</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>data3 <span class="ot">=</span> <span class="fu">na.omit</span>(data)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>med_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(hostility_z <span class="sc">~</span> emotionality_z, <span class="at">data =</span> data3)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>out_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(punishment <span class="sc">~</span> hostility_z <span class="sc">+</span> emotionality_z, <span class="at">data =</span> data3)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>mediate_test <span class="ot">&lt;-</span> <span class="fu">mediate</span>(med_model, out_model,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                        <span class="at">treat =</span> <span class="st">"emotionality_z"</span>,</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                        <span class="at">mediator =</span> <span class="st">"hostility_z"</span>,</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                        <span class="at">boot =</span> <span class="cn">TRUE</span>, <span class="at">sims =</span> <span class="dv">5000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Running nonparametric bootstrap</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mediate_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Causal Mediation Analysis 
-
-Nonparametric Bootstrap Confidence Intervals with the Percentile Method
-
-                Estimate 95% CI Lower 95% CI Upper p-value    
-ACME            0.150157     0.116356     0.185659  &lt;2e-16 ***
-ADE             0.002699    -0.052973     0.060734  0.9468    
-Total Effect    0.152856     0.098409     0.209183  &lt;2e-16 ***
-Prop. Mediated  0.982343     0.687916     1.504222  &lt;2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Sample Size Used: 940 
+<section id="what-is-a-systematic-literature-review" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-a-systematic-literature-review">What is a Systematic Literature Review?</h3>
+<p><strong>Def.:</strong> A Systematic Litertaure Review is a transparent, structured summary of existing research to answer a specific, falsifiable research question. It is a secondary research method, collecting findings from primary research to assess what conclusions can be derived from the current state of research. As with a meta-analysis, clear inclusion and exclusion criteria are defined for this purpose. While the studies included in a meta-analysis are statistically summarised, in a systematic literature review the collected findings are merely collected and interpreted.</p>
+<p>Unlike a narrative literature review, it does not summarise the state of the art in a field of research, but rather uses it to answer a specific research question.</p>
+<p><em>Note</em>: A Systematic Literature Review is not the same as a Systematic Review. The first focusses on scientific literature whereas the latter is wider in scope and includes all sorts of databases, such as archive data, offical statistics, etc.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type of Research Synthesis</th>
+<th>Narrative / Literature Review</th>
+<th>Systematic Literature Review</th>
+<th>Meta-Analysis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Type of Research</td>
+<td>Secondary; based on existing research</td>
+<td>Secondary; based on existing research</td>
+<td>Secondary; based on existing research</td>
+</tr>
+<tr class="even">
+<td>Aim</td>
+<td>Summarizing the State of the Art of a given research area, describe knowledge basis, tensions, and gaps.</td>
+<td>Answer a specific research question</td>
+<td>Answer a specific research question</td>
+</tr>
+<tr class="odd">
+<td>Outcome</td>
+<td>Narrative literature synthesis</td>
+<td>Narrative literature synthesis</td>
+<td>Statistical summary of effect sizes</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="how-to-conduct-a-systematic-literature-review" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-conduct-a-systematic-literature-review">How to Conduct a Systematic Literature Review?</h3>
+</section>
+<section id="define-a-research-question" class="level2">
+<h2 class="anchored" data-anchor-id="define-a-research-question">1. Define a Research Question</h2>
+<p>Start by defining a concrete, answerable research question. There are different <strong>frameworks</strong> for defining a research question. They differ depending on your are of study.</p>
+<p><a href="https://libguides.ntu.edu.sg/c.php?g=936042&amp;p=6768649" class="external" target="_blank">PICO</a> is the most common framework for clinical research.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>P</th>
+<th>I</th>
+<th>C</th>
+<th>O</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Patient / Population / Problem</td>
+<td>Intervention</td>
+<td>Comparison (e.g., placebo control group, gold standard)</td>
+<td>Outcome</td>
+</tr>
+</tbody>
+</table>
+<p>Example: Do depressed men (population) who receive gender-specific intervention in addition to classic behavioral therapy (intervention) show a greater reduction in symptoms (ourcome) than depressed men who receive ‘only’ classic behavioural therapy (comparison)?</p>
+</section>
+<section id="formulate-inclusion-and-exclusion-criteria" class="level2">
+<h2 class="anchored" data-anchor-id="formulate-inclusion-and-exclusion-criteria">2. Formulate Inclusion and Exclusion Criteria</h2>
+<p>Guidelines for formulating a research question, such as the PICO framework, can also help to formulate inclusion and exclusion criteria.</p>
+<p>For example, if you want to study a population of depressed men, you can exclude all studies that did not examine adult men with depression (e.g., studies with under-age or female-only samples). Furthermore, studies that did not examine a gender-specific add-on to classic CBT can also be excluded (e.g., studies that only investigated a gender-specific intervention, without CBT).</p>
+</section>
+<section id="define-search-terms" class="level2">
+<h2 class="anchored" data-anchor-id="define-search-terms">3. Define Search Terms</h2>
+<ul>
+<li><p>Use your research question to extract <strong>key words</strong> than can be used as search terms (e.g., “depressed men”, “CBT/cognitive behavioural therapy”, “symptom reduction”, “gender-specific”, “gender”)</p></li>
+<li><p>Identify relevant synonyms or categories for these keywords (e.g., for “depression”, these would be “major depression”, “major depressive disorder”, and “depressive episode”)</p></li>
+<li><p>Now, based on the framework you used to formulate your research question, ask yourself which combinations of search terms would allow a search that is broad enough to identify all relevant research but still so precise that you avoid unnecessary findings?</p></li>
+<li><p>avoid words that don’t hold much meaning, such as “and”, “or” - these bring the risk of “polluting” your results because of their frequent yet unspecific occurence</p></li>
+</ul>
+</section>
+<section id="choose-a-search-strategy" class="level2">
+<h2 class="anchored" data-anchor-id="choose-a-search-strategy">4. Choose a Search Strategy</h2>
+</section>
+<section id="where-to-search" class="level1">
+<h1>Where to search</h1>
+<p>In order to conduct an exhaustive search that allows to collect all relevant literature, you’ll have to search in multiple databases.</p>
+<p>Identify academic databases that are relevant to your topic. These databases are typically well-indexed—that is, articles are classified and tagged with terms that reflect their main focus or subject, making it easier to locate relevant materials. Search engines such as Google or Google Scholar are not ideal for conducting systematic searches, as their indexing methods and limited search features make it difficult to perform comprehensive or structured searches.</p>
+<p>A selection of academic databases for psychological research can be found <a href="https://guides.lib.sussex.ac.uk/c.php?g=681872&amp;p=4866601" class="external" target="_blank">here</a>.</p>
+</section>
+<section id="how-to-search" class="level1">
+<h1>How to search</h1>
+<p><strong>Boolean Search Operators</strong>: In many databases, “AND”, “OR”, “NOT” operaters can be used to fine-tune your search. If used between keywords, the search enginge will look for occurences that include both (e.g., “gender AND psychotherapy”), either one (e.g., “depression OR major depressive disorder”), or one without the other (e.g., “psychotherapy NOT psychoanalytic”).</p>
+<p><strong>Truncation Search Operator</strong>: If a word base is complemented with an ansterik instead of an ending, the search engine will look for different endings of that word. (e.g., “depress*” will allow for results such as “major depression”, “depressive disorder”, “depressed men”)</p>
+<p><strong>Wildcard Operator</strong>: Combining a keyword with a question mark signals to the search engine that the word can be spelled differently and will allow for different spelling in the results (e.g., “Cognitive Behavioral? Therapy” will include results such as “Cognitive Behavioural Therapy” )</p>
+<p><strong>Advanced Searches</strong>:</p>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section">5.</h2>
 
 
-Simulations: 5000 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Interpretation</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ACME: Das ist der indirekte Effekt (Average Causal Mediation Effect) — der Teil von X’s Effect auf Y, der durch den Mediator M vermittelt wird</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ADE: Das ist der direkte Effekt; der Effekt von X auf Y unter Kontrolle des Einflusses von M</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
-
-
+</section>
 </section>
 
 </main> <!-- /main -->

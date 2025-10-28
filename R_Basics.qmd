@@ -81,7 +81,7 @@ is.data.frame(Cars93) #handelt es sich um einen Cars93 Frame?
 is.table(Cars93) #handelt es sich um eine Tabelle
 nrow(Cars93) #Anzahl Zeilen (meistens Beobachtungen / Subjects)
 ncol(Cars93) #Anzahl Spalten (meistens Variablen)
-unique(Cars93$study_id) #Anzahl unterschiedlicher Study Id's, sofern diese unter "study_id" aufgeführt sind
+length(unique(Cars93$study_id)) #Anzahl unterschiedlicher Study Id's, sofern diese unter "study_id" aufgeführt sind
 ```
 
 ### Variablen-Typen in R
@@ -135,7 +135,7 @@ as.data.frame(df1) # df1 in einen data frame umwandeln
 df2 = as.data.frame(df2) # ein neues Objekt erstellen, in das die Inhalte von df1 in der data frame Struktur abgelehgt werden
 ```
 
-### Subsets erstellen
+## Subsets erstellen
 
 Subsets oder Subsamples werden immer dann erstellt, wenn nur ein Teil des Datensatzes bearbeitet werden soll oder wenn Teile des Datensatzes getrennt betrachtet werden sollen. Das ist u.a. dann der Fall, wenn mit Teilstichproben gearbeitet wird. Manchmal verlangt auch die Struktur der Daten, dass der Datensatz aufgeteilt und nach der Bearbeitung wieder zusammen gesetzt wird.
 
@@ -191,7 +191,7 @@ stratified_frac <- df %>% group_by(sex) %>% slice_sample(prop = 0.1) %>% ungroup
 
 ```
 
-### Variablen erstellen und umkodieren
+## Variablen erstellen und umkodieren
 
 ```r
 # Wenn, dann

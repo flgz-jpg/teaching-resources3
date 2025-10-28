@@ -289,7 +289,7 @@ Warning
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">is.table</span>(Cars93) <span class="co">#handelt es sich um eine Tabelle</span></span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(Cars93) <span class="co">#Anzahl Zeilen (meistens Beobachtungen / Subjects)</span></span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(Cars93) <span class="co">#Anzahl Spalten (meistens Variablen)</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(Cars93<span class="sc">$</span>study_id) <span class="co">#Anzahl unterschiedlicher Study Id's, sofern diese unter "study_id" aufgeführt sind</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(Cars93<span class="sc">$</span>study_id)) <span class="co">#Anzahl unterschiedlicher Study Id's, sofern diese unter "study_id" aufgeführt sind</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="variablen-typen-in-r" class="level3">
 <h3 class="anchored" data-anchor-id="variablen-typen-in-r">Variablen-Typen in R</h3>
@@ -340,8 +340,8 @@ Der Erste Bearbeitungsschritt
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(df1) <span class="co"># df1 in einen data frame umwandeln</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">=</span> <span class="fu">as.data.frame</span>(df2) <span class="co"># ein neues Objekt erstellen, in das die Inhalte von df1 in der data frame Struktur abgelehgt werden</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="subsets-erstellen" class="level3">
-<h3 class="anchored" data-anchor-id="subsets-erstellen">Subsets erstellen</h3>
+<section id="subsets-erstellen" class="level2">
+<h2 class="anchored" data-anchor-id="subsets-erstellen">Subsets erstellen</h2>
 <p>Subsets oder Subsamples werden immer dann erstellt, wenn nur ein Teil des Datensatzes bearbeitet werden soll oder wenn Teile des Datensatzes getrennt betrachtet werden sollen. Das ist u.a. dann der Fall, wenn mit Teilstichproben gearbeitet wird. Manchmal verlangt auch die Struktur der Daten, dass der Datensatz aufgeteilt und nach der Bearbeitung wieder zusammen gesetzt wird.</p>
 <p>Wir erstellen einen fiktiven Datensatz, um die folgenden Operationen anwenden zu können</p>
 <div class="cell">
@@ -389,8 +389,8 @@ Der Erste Bearbeitungsschritt
 <span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>stratified <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span> <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>() <span class="co"># Teilstichprobe mit je 5 Personen pro Geschlecht</span></span>
 <span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>stratified_frac <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span> <span class="fu">slice_sample</span>(<span class="at">prop =</span> <span class="fl">0.1</span>) <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>() <span class="co"># Teilstichprobe aus je 10% der Personen jeden Geschlechts</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="variablen-erstellen-und-umkodieren" class="level3">
-<h3 class="anchored" data-anchor-id="variablen-erstellen-und-umkodieren">Variablen erstellen und umkodieren</h3>
+<section id="variablen-erstellen-und-umkodieren" class="level2">
+<h2 class="anchored" data-anchor-id="variablen-erstellen-und-umkodieren">Variablen erstellen und umkodieren</h2>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wenn, dann</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>income_level <span class="ot">=</span> <span class="fu">ifelse</span>(df<span class="sc">$</span>income <span class="sc">&gt;=</span> <span class="dv">26677</span>, <span class="st">"high"</span>, <span class="st">"low"</span>) <span class="co"># wenn income  &gt;= 26677, ist es "high", ansonsten ist es "low"</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
